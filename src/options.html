@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Katana</title>
+
+    <link rel="stylesheet" href="assets/css/options.css">
+    <link rel="stylesheet" href="assets/css/photon.min.css">
+    <link rel="stylesheet" href="assets/octicons/octicons.css">
+  </head>
+
+  <body>
+    <div class="window">
+      <header class="toolbar toolbar-header">
+        <h1 class="title">Options</h1>
+
+        <div class="toolbar-actions">
+          <div class="btn-group">
+            <button class="btn btn-default active" id="general_btn">
+              <span class="octicon octicon-gear icon-text"></span>
+              General
+            </button>
+
+            <button class="btn btn-default" id="shortcuts_btn">
+              <span class="octicon octicon-settings icon-text"></span>
+              Shortcuts
+            </button>
+
+            <button class="btn btn-default" id="about_btn">
+              <span class="octicon octicon-info icon-text"></span>
+              About
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="window-content">
+        <div class="padded" id="general">
+          <h4>General Settings</h4>
+
+          <div class="indent">
+            <div class="checkbox">
+              <label>
+                <input id="startAtLogin" type="checkbox"> Start at login
+              </label>
+            </div>
+
+            <div class="checkbox">
+              <label>
+                <input id="hideIcon" type="checkbox"> Hide dock icon
+              </label>
+            </div>
+
+            <div class="checkbox">
+              <label>
+                <input id="deleteOnUpload" type="checkbox"> Delete on upload
+              </label>
+            </div>
+
+            <div class="select">
+              Upload Service:
+              <select id="uploadService" class="form-control">
+                <option value="imgur">Imgur</option>
+                <optgroup label="Pomf">
+                  <option value="pomf:aww.moe">aww.moe</option>
+                  <option value="pomf:cocaine.ninja">cocaine.ninja</option>
+                  <option value="pomf:desu.sh">desu.sh</option>
+                  <option value="pomf:pomf.cat">pomf.cat</option>
+                  <option value="pomf:mixtape.moe">mixtape.moe</option>
+                  <option value="pomf:nya.is">nya.is</option>
+                  <option value="pomf:reich.io">reich.io</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="padded" id="shortcuts">
+          <h4>Keyboard Shortcuts</h4>
+          <div class="indent">
+            <div class="form-group">
+              <label>Capture Screenshot:</label>
+              <div id="shortcut_input" class="form-control"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="padded" id="about">
+          <div id="ninja">
+            <img src="assets/images/ninja_s.png" height="140" />
+          </div>
+
+          <div id="credits">
+            <div class="content">
+              <h3>Credits</h3>
+
+              <p>Written by <a class="link" target="_blank" href="https://jew.cat/">Gage N.</a></p>
+
+              <p>Original Icons by <a class="link" target="_blank" href="https://thenounproject.com/anandgrafiti">Anand A Nair</a></p>
+
+              <p>About Background by <a class="link" target="_blank" href="https://subtlepatterns.com/">Subtle Patterns</a></p>
+
+              <p>Source Code available on <a class="link" target="_blank" href="https://github.com/bluegill/katana">GitHub</a></p>
+
+            </div>
+          </div>
+
+          <div class="content">
+
+            <h1>Katana</h1> <div id="version"></div>
+
+            <div class="desc">a simple way to take screenshots.</div>
+            
+            <div class="links">
+              <a href="https://getkatana.com/" target="_blank" class="btn btn-large btn-default">
+                <span class="octicon octicon-globe icon-text"></span>
+                Website
+              </a>
+
+              <a id="showCredits" target="_blank" class="btn btn-large btn-default">
+                <span class="octicon octicon-info icon-text"></span>
+                Credits
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+          <button id="save_btn" class="btn btn-primary pull-right">
+            Save
+          </button>
+        </div>
+      </footer>
+    </div>
+  </body>
+
+  <script src="assets/js/mousetrap.min.js"></script>
+  <script src="assets/js/mousetrap-record.min.js"></script>
+  <script src="assets/js/mousetrap-pause.min.js"></script>
+
+  <script>
+  window.$ = window.jQuery = require('./assets/js/jquery-3.1.1.min.js');
+
+  const ipc = require('electron').ipcRenderer;
+
+  let activeView = 'general';
+  let optionsObj;
+
+  let ninjaClicks = 0;
+
+  ipc.send('getOptions');
+  ipc.send('getVersion');
+
+  ipc.on('getVersion', (event, version) => {
+    $('#version').text(`${version}`);
+  });
+
+  ipc.on('getOptions', (event, options) => {
+    optionsObj = options;
+
+    if(options.hideIcon       === true) $('#hideIcon').prop('checked', true);
+    if(options.deleteOnUpload === true) $('#deleteOnUpload').prop('checked', true);
+    if(options.startAtLogin   === true) $('#startAtLogin').prop('checked', true);
+
+    if(options.shortcut){
+      $('#shortcut_input').html(options.shortcut);
+    }
+
+    if(options.uploadService){
+      $('#uploadService').val(options.uploadService);
+    } else {
+      $('#uploadService').val('imgur');
+    }
+  });
+
+  let ninjaObj = $('#ninja > img');
+
+  ninjaObj.click(() => {
+    ninjaClicks = (ninjaClicks + 1);
+    if(ninjaClicks === 3){
+      ninjaClicks = 0;
+    }
+  });
+
+  $('#credits').click((event) => {
+    if(event.target.nodeName !== 'A'){
+      $('#credits').fadeOut(200);
+    }
+  });
+
+  $('#showCredits').click(() => {
+    $('#credits').fadeIn(200);
+  });
+
+  $('#uploadService').change(function(){
+    let service = $(this).find('option:selected').val();
+    optionsObj.uploadService = service;
+  });
+
+  $('input[type="checkbox"]').change(function(){
+    let option = $(this).attr('id');
+    optionsObj[option] = this.checked;
+  });
+
+  const shortcutInput = $('#shortcut_input');
+
+  $('#save_btn').click(() => {
+    ipc.send('saveOptions', optionsObj);
+  });
+
+  $('#general_btn').click(() => {
+    switchView('general');
+  });
+
+  $('#shortcuts_btn').click(() => {
+    switchView('shortcuts');
+  });
+
+  $('#about_btn').click(() => {
+    switchView('about');
+  });
+
+  $('html').click((e) => {
+    if(activeView == 'shortcuts'){
+      if(e.target.id == shortcutInput.attr('id')){
+        if(!shortcutInput.hasClass('active')){
+          shortcutInput.text('Recording shortcut');
+          shortcutInput.addClass('active');
+          Mousetrap.record(function(sequence) {
+            const combo = parseCombo(sequence[0]);
+            optionsObj.shortcut = combo;
+            shortcutInput.html(combo);
+          });
+        }
+      } else {
+        if(shortcutInput.hasClass('active')){
+          if(shortcutInput.text() == 'Recording shortcut'){
+            shortcutInput.html(optionsObj.shortcut);
+          }
+          shortcutInput.removeClass('active');
+        }
+      }
+    }    
+  });
+
+  //////
+
+  function parseCombo(combo){
+    console.log(combo);
+    if(combo.includes('meta')){
+      combo = combo.replace('meta', 'command');
+    }
+    return combo;
+  }
+
+  function switchView(view){
+    const activeBtn = $(`#${activeView}_btn`);
+    const switchBtn = $(`#${view}_btn`);
+
+    const activeElement = $(`#${activeView}`);
+    const switchElement = $(`#${view}`);
+
+    activeView = view;
+
+    activeElement.hide();
+    switchElement.show();
+
+    if(activeBtn.hasClass('active')){
+      activeBtn.removeClass('active');
+    }
+
+    if(!switchBtn.hasClass('active')){
+      switchBtn.addClass('active');
+    }
+  }
+  </script>
+</html>
