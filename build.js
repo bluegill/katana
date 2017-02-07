@@ -1,6 +1,6 @@
 const packager = require('electron-packager');
 const options  = {
-  platform: ['darwin', 'win32'],
+  platform: ['darwin'],
   arch: 'x64',
   icon: './src/assets/icon.icns',
   dir: '.',

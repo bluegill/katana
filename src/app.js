@@ -28,6 +28,7 @@ class app {
     }
 
     this.optionsModule    = new (require('./lib/options'))(this);
+    this.updaterModule    = new (require('./lib/updater'))(this);
     this.screenshotModule = new (require('./lib/screenshot'))(this);
     this.shortenerModule  = new (require('./lib/urlShortener'))(this);
 

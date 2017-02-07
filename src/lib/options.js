@@ -80,10 +80,10 @@ class options {
 
   showWindow(){
     if(this.win) return;
-    
+
     this.win = new BrowserWindow({
-      width: 420,
-      height: 320,
+      width: 460,
+      height: 340,
       resizable: false,
       minimizable: false,
       titleBarStyle: 'hidden',

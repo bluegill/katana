@@ -71,6 +71,12 @@
                 </optgroup>
               </select>
             </div>
+
+            <br />
+
+            <a id="checkUpdate" target="_blank" class="btn btn-default">
+              Check for Updates
+            </a>
           </div>
         </div>
 
@@ -109,7 +115,7 @@
             <h1>Katana</h1> <div id="version"></div>
 
             <div class="desc">a simple way to take screenshots.</div>
-            
+
             <div class="links">
               <a href="https://getkatana.com/" target="_blank" class="btn btn-large btn-default">
                 <span class="octicon octicon-globe icon-text"></span>
@@ -183,6 +189,10 @@
     }
   });
 
+  $('#checkUpdate').click(() => {
+    ipc.send('checkForUpdate');
+  });
+
   $('#credits').click((event) => {
     if(event.target.nodeName !== 'A'){
       $('#credits').fadeOut(200);
@@ -241,7 +251,7 @@
           shortcutInput.removeClass('active');
         }
       }
-    }    
+    }
   });
 
   //////
