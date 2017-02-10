@@ -10,7 +10,7 @@ const utils    = require('./utils');
 const {clipboard}  = require('electron');
 
 class screenshot {
-  constructor(parent){    
+  constructor(parent){
     this.parent    = parent;
     this.options   = parent.optionsModule;
     this.directory = config.paths.uploads;
@@ -21,7 +21,7 @@ class screenshot {
   }
 
   captureFull(){
-    
+
   }
 
   captureWindow(){
@@ -40,7 +40,7 @@ class screenshot {
 
         let service = defaultServices.screenshotHost;
         let serviceModule;
-        
+
         const definedHost     = this.options.getOption('uploadService');
         if(/*services && services.screenshotHost*/ definedHost){
           //service = services.screenshotHost;
@@ -67,14 +67,14 @@ class screenshot {
             if(result.link !== undefined){
               clipboard.writeText(result.link);
             }
-            
+
             console.log('Upload successful!');
 
             this.parent.setIcon('default');
             this.parent.showNotification('Screenshot has been successfully uploaded and copied to your clipboard!', 'Screenshot uploaded', result.link);
           } else {
             this.parent.setIcon('default');
-            this.parent.showNotification('There was an error while uploading your screenshot!', 'Error uploading screenshot');
+            this.parent.showNotification('Unable to upload screenshot', 'Upload error');
 
             console.log(error);
           }

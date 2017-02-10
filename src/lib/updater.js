@@ -71,6 +71,8 @@ class updater {
   checkForUpdate(prompt){
     console.log('Checking for update...');
 
+    const icon = path.join(__dirname, '../assets/images/', 'icon.png');
+
     request(this.updatePath, (error, response, body) => {
       if(!error && response.statusCode === 200){
         const json = JSON.parse(body);
@@ -83,8 +85,6 @@ class updater {
           console.log('No update available');
 
           if(prompt){
-            const icon = path.join(__dirname, '../assets/images/', 'icon.png');
-
             dialog.showMessageBox(this.options.win, {
               message: 'There are currently no updates available.',
               icon: icon
@@ -92,7 +92,14 @@ class updater {
           }
         }
       } else {
-        console.log('checkForUpdate() request error: ', error, ', statusCode: ', response.statusCode);
+        console.log('checkForUpdate() request error: ', error);
+
+        if(prompt){
+          dialog.showMessageBox(this.options.win, {
+            message: 'Unable to connect to update servers',
+            icon: icon
+          });
+        }
       }
     });
   }
