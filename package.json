@@ -1,7 +1,7 @@
 {
   "name": "Katana",
   "private": true,
-  "version": "0.1.6b",
+  "version": "0.1.7b",
   "main": "./src/app.js",
   "scripts": {
     "start": "./node_modules/.bin/electron ."
