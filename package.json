@@ -1,6 +1,6 @@
 {
   "name": "Katana",
-  "private": true,
+  "description": "An open-source screenshot utility that lives in your menubar - for macOS.",
   "version": "0.1.7b",
   "main": "./src/app.js",
   "scripts": {
