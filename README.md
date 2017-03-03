@@ -1,9 +1,10 @@
 # Katana
-https://getkatana.com/
 
 Katana is a free, open-source screenshot utility for macOS that lives in your menubar. Katana was built from the ground up using the latest web technologies (HTML/CSS/JS), and is powered by Node.js & Electron.
 
 Windows / Linux support **might** come at some point.
+
+Prebuilt binaries available at https://getkatana.com/
 
 # Features
 
