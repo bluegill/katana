@@ -7,9 +7,8 @@ const request  = require('request');
 const fs       = require('fs');
 const path     = require('path');
 const sudo     = require('sudo-prompt');
-const rimraf   = require('rimraf');
 const electron = require('electron');
-const unzip    = require('extract-zip');
+
 const pkg      = require('../../package');
 
 const os = require('os');
