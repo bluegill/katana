@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Katana</title>
+
+    <link rel="stylesheet" href="../resources/css/options.css">
+  </head>
+
+  <body>
+
+    <button id="close"></button>
+
+    <div class="sidebar">
+      <img src="../resources/images/icon.png" />
+
+      <ul>
+        <li class="active">
+          <a href="#general"><span class="octicon octicon-gear icon-text"></span> General</a>
+        </li>
+
+        <li>
+          <a href="#shortcuts"><span class="octicon octicon-settings icon-text"></span> Shortcuts</a>
+        </li>
+
+        <li>
+          <a href="#services"><span class="octicon octicon-cloud-upload icon-text"></span> Services</a>
+        </li>
+
+        <li>
+          <a href="#about"><span class="octicon octicon-info icon-text"></span> About</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="backdrop">
+      <div class="update">
+        <h3>Update Available</h3>
+
+        <p>
+          There is an update available for Katana. Please update to the latest version for the best experience.
+        </p>
+
+        <p>
+          <span>The appplication will restart after updating</span>
+        </p>
+
+        <p>
+          <a href="#download" class="button">Download Update</a>
+          <a href="#cancel">I'll do it later</a>
+        </p>
+
+        <div class="progress">
+          Downloading...
+          <div class="bar">
+            <div class="indeterminate"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="general" class="view">
+        <h3>General</h3>
+
+        <div class="content">
+          <div class="section">
+            <p class="title">Start at login</p>
+            <p class="subtitle">Launch Katana when your system starts up</p>
+
+            <label class="switch">
+              <input id="startAtLogin" type="checkbox">
+              <div class="slider round"></div>
+            </label>
+          </div>
+
+          <div class="section">
+            <p class="title">Delete on upload</p>
+            <p class="subtitle">Delete screenshot after upload is complete</p>
+
+            <label class="switch">
+              <input id="deleteOnUpload" type="checkbox">
+              <div class="slider round"></div>
+            </label>
+          </div>
+
+          <div class="section">
+            <p class="title">Show dock icon</p>
+            <p class="subtitle">Shows the Katana icon in your dock</p>
+
+            <label class="switch">
+              <input id="showIcon" type="checkbox">
+              <div class="slider round"></div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="shortcuts" class="view">
+        <h3>Shortcuts</h3>
+
+        <div class="content">
+          <div class="section">
+            <p class="title">Capture Screenshot</p>
+            <p class="subtitle">Capture and upload a screenshot</p>
+
+            <div id="shortcutInput" class="control"></div>
+          </div>
+
+          <div class="section disabled">
+            <p class="title">Shorten URL</p>
+            <p class="subtitle">Shorten any URL that is copied to your clipboard</p>
+
+            <div id="shortenInput" class="control">None</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="services" class="view">
+        <h3>Services</h3>
+
+        <div class="content">
+          <div class="section">
+            <p class="title">Upload Service</p>
+            <p class="subtitle">The image host where your screenshot will be sent</p>
+
+            <select name="uploadService" class="control">
+              <option value="imgur">Imgur</option>
+              <optgroup label="Pomf">
+                <option value="pomf:aww.moe">aww.moe</option>
+                <option value="pomf:cocaine.ninja">cocaine.ninja</option>
+                <option value="pomf:desu.sh">desu.sh</option>
+                <option value="pomf:pomf.cat">pomf.cat</option>
+                <option value="pomf:mixtape.moe">mixtape.moe</option>
+                <option value="pomf:nya.is">nya.is</option>
+                <option value="pomf:reich.io">reich.io</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="section disabled">
+            <p class="title">URL Shortener</p>
+            <p class="subtitle">The URL shortener to use when shortening links</p>
+
+            <select id="shortenerService" class="control" disabled>
+              <option value="is.gd">is.gd</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="about" class="view">
+        <h3>About</h3>
+
+        <div class="content">
+
+          <h3>Katana</h3>
+          <h4>Katana is a free, open-source screenshot utility that lives in your menubar.</h4>
+
+          <p>
+            <a class="button primary" href="#check">
+              <span class="octicon octicon-cloud-download icon-text"></span> Check for update
+            </a>
+
+            <a class="button" href="https://getkatana.com/" target="_blank">
+              <span class="octicon octicon-globe icon-text"></span> Website
+            </a>
+
+            <a class="button" href="https://github.com/bluegill/katana" target="_blank">
+              <span class="octicon octicon-mark-github icon-text"></span> GitHub
+            </a>
+          </p>
+
+          <p>
+            <a href="https://getkatana.com/about/license" target="_blank">License</a> &nbsp; &middot; &nbsp;
+            <a href="https://getkatana.com/about/credits" target="_blank">Credits</a> &nbsp; &middot; &nbsp;
+            Made by <a href="https://128mb.net/" target="_blank">128mb</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>require('./lib/options.js');</script>
+</html>

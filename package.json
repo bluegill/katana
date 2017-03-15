@@ -1,16 +1,31 @@
 {
   "name": "Katana",
-  "description": "An open-source screenshot utility that lives in your menubar - for macOS.",
-  "version": "0.1.8b",
-  "main": "./src/app.js",
+  "description": "Open-source screenshot utility that lives in your menubar.",
+  "version": "0.2.0b",
+  "main": "./app/index.js",
+  "author": {
+    "name": "128mb",
+    "email": "gage@128mb.net",
+    "url": "https://128mb.net/"
+  },
+  "license": "MIT",
+  "homepage": "https://getkatana.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluegill/katana.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bluegill/katana/issues"
+  },
   "scripts": {
-    "start": "./node_modules/.bin/electron ."
+    "start": "./node_modules/.bin/electron .",
+    "build": "node ./build/index.js"
   },
   "dependencies": {
     "auto-launch": "^5.0.1",
     "electron": "^1.6.3",
     "electron-packager": "^8.5.2",
-    "fs-extra": "^2.0.0",
+    "fs-extra": "^2.1.1",
     "node-notifier": "^4.6.1",
     "request": "^2.81.0",
     "sudo-prompt": "^6.2.1"
