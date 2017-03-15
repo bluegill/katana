@@ -1,19 +1,16 @@
-# Katana
+# <img src='http://i.imgur.com/NkCTU6e.png' width='48' align='center' alt='Katana Icon'> Katana
 
-Katana is a free, open-source screenshot utility for macOS that lives in your menubar. Katana was built from the ground up using the latest web technologies (HTML/CSS/JS), and is powered by Node.js & Electron.
+Katana is an open-source screenshot utility for macOS that lives in your menubar.
 
-Windows / Linux support **might** come at some point.
-
-Prebuilt binaries available at https://getkatana.com/
+Download now at https://getkatana.com/
 
 # Features
+* Upload directly to several different image hosts.
+* Customizable shortcuts and preferences.
+* Lives in your menubar, enjoys a snack periodically.
+* Constantly evolving, providing new functionality all the time.
 
-* Upload directly to Imgur or several different Pomf hosts (aww.moe, pomf.cat, cocaine.ninja, + more), with more hosts coming soon.
-* Change screenshot hotkey to your liking, default is `⌘ + option + s`
-- Run on login, hide from dock - Katana lives in your menubar.
-
-![Katana Options](http://i.imgur.com/Jyak8gj.png)
+<img src="http://i.imgur.com/rVVMlrT.png" width="640" />
 
 # Credits
-to be added to readme;
-available in Katana options or /src/options.html
+https://getkatana.com/about/credits
