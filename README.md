@@ -1,8 +1,8 @@
-# <img src='http://i.imgur.com/NkCTU6e.png' width='48' align='center' alt='Katana Icon'> Katana
+# <img src='http://i.imgur.com/NkCTU6e.png' width='48' align='center' alt='Katana Icon'> &nbsp; Katana
 
 Katana is an open-source screenshot utility for macOS that lives in your menubar.
 
-Download now at https://getkatana.com/
+Download available at https://getkatana.com/
 
 # Features
 * Upload directly to several different image hosts.
