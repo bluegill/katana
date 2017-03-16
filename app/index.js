@@ -2,10 +2,8 @@ const electron           = require('electron');
 const {Tray, Menu}       = electron;
 
 const notificationCenter = require('node-notifier').NotificationCenter;
-const notifier           = new notificationCenter({
-  withFallback: true,
-  customPath: `${__dirname}/resources/notifier.app/Contents/MacOS/terminal-notifier`
-});
+
+let notifier;
 
 const autoLaunch = require('auto-launch');
 const fs         = require('fs');
@@ -26,6 +24,11 @@ class app {
         path: this.appPath
       });
     }
+
+    notifier = new notificationCenter({
+      withFallback: true,
+      customPath: this.appPath + '/Contents/Resources/app.asar.unpacked/app/resources/notifier.app/Contents/MacOS/terminal-notifier'
+    });
 
     this.optionsModule    = new (require('./components/options'))(this);
     this.updaterModule    = new (require('./components/updater'))(this);

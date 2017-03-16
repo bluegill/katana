@@ -24,10 +24,9 @@ packager(options, (error, path) => {
   console.log(`Package created, path: ${path}`);
   console.log(`Creating asar archive...`);
 
-  asar.createPackage(src, dest, function() {
+  asar.createPackageWithOptions(src, dest, {unpackDir: 'app/resources/notifier.app'}, () => {
     fs.remove(src, err => {
       if (err) return console.error(err)
-
       console.log(`Build complete!`);
     });
   });
