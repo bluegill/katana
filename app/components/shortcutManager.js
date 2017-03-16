@@ -1,10 +1,10 @@
 const {globalShortcut} = require('electron');
 const config           = require('../config');
 
-class shortcutManager {
+module.exports = class {
   constructor(app){
     this.app     = app;
-    this.options = app.optionsModule;
+    this.options = app.preferencesModule;
 
     const defaultShortcuts = config.defaults.shortcuts;
 
@@ -38,7 +38,6 @@ class shortcutManager {
       }
     };
 
-    // work in progress...
     const shortcutOptions = this.options.getOption('shortcuts');
 
     if(shortcutOptions){
@@ -50,18 +49,12 @@ class shortcutManager {
       }
     }
 
-    /** temporary until i finish new shortcuts system **/
-    const shortcut = this.options.getOption('shortcut');
-
-    if(shortcut){
-      this.shortcuts['screenshotSelection'].combo = shortcut;
-    }
-    /** // **/
-
     this.registerShortcuts();
   }
 
   updateShortcut(shortcut, oldCombo, newCombo){
+    if(!shortcut || !oldCombo || !newCombo) return;
+
     if(this.shortcuts[shortcut]){
       const action = this.shortcuts[shortcut].action;
 
@@ -71,7 +64,7 @@ class shortcutManager {
       this.shortcuts[shortcut].combo = newCombo;
     }
   }
-  
+
   registerShortcuts(){
     for(const index of Object.keys(this.shortcuts)){
       const shortcut = this.shortcuts[index];
@@ -85,5 +78,3 @@ class shortcutManager {
     globalShortcut.unregisterAll();
   }
 }
-
-module.exports = shortcutManager;

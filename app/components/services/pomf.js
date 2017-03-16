@@ -1,7 +1,7 @@
 const request  = require('request');
 const fs       = require('fs');
 
-class pomf {
+module.exports = class {
   static setPath(uploadPath, resultPath){
     this.uploadPath = uploadPath;
     this.resultPath = resultPath;
@@ -45,5 +45,3 @@ class pomf {
     form.append('files[]', fs.createReadStream(file));
   }
 }
-
-module.exports = pomf;

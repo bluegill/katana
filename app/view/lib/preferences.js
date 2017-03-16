@@ -12,8 +12,6 @@ let optionsObj;
 
 $('#close').click(() => {
   ipc.send('saveOptions', optionsObj);
-
-  // close the winderrrr
   (remote.getCurrentWindow()).close();
 });
 
@@ -31,14 +29,20 @@ ipc.on('getOptions', (event, options) => {
   if(options.deleteOnUpload === true) $('#deleteOnUpload').prop('checked', true);
   if(options.startAtLogin   === true) $('#startAtLogin').prop('checked', true);
 
-  if(options.shortcut){
-    $('#shortcutInput').text(options.shortcut);
+  if(options.shortcuts){
+    for(const shortcut of Object.keys(options.shortcuts)){
+      let combo = options.shortcuts[shortcut];
+
+      $('#' + shortcut).val(combo);
+    }
   }
 
-  if(options.uploadService){
-    $('select[name="uploadService"]').val(options.uploadService);
-  } else {
-    $('select[name="uploadService"]').val('imgur');
+  if(options.services && options.services.uploadService){
+    $('select[name="uploadService"]').val(options.services.uploadService);
+  }
+
+  if(options.services && options.services.shortenerService){
+    $('select[name="shortenerService"]').val(options.services.shortenerService);
   }
 });
 
@@ -72,32 +76,36 @@ $('input[type="checkbox"]').change(function(){
 
 $('select[name="uploadService"]').change(function(){
   let service = $(this).find('option:selected').val();
-  optionsObj.uploadService = service;
+  if(!optionsObj.services) optionsObj.services = {};
+  optionsObj.services.uploadService = service;
 });
 
-const shortcutInput = $('#shortcutInput');
+$('select[name="shortenerService"]').change(function(){
+  let service = $(this).find('option:selected').val();
+  if(!optionsObj.services) optionsObj.services = {};
+  optionsObj.services.shortenerService = service;
+});
 
-$('.container').click((event) => {
-  if($('#shortcuts').is(':visible')){
-    if(event.target.id == shortcutInput.attr('id')){
-      if(!shortcutInput.hasClass('active')){
-        shortcutInput.text('Recording shortcut');
-        shortcutInput.addClass('active');
-        Mousetrap.record(function(sequence) {
-          const combo = parseCombo(sequence[0]);
-          optionsObj.shortcut = combo;
-          shortcutInput.html(combo);
-        });
-      }
-    } else {
-      if(shortcutInput.hasClass('active')){
-        if(shortcutInput.text() == 'Recording shortcut'){
-          shortcutInput.html(optionsObj.shortcut);
-        }
-        shortcutInput.removeClass('active');
-      }
-    }
-  }
+
+$('.shortcutInput').focus((event) => {
+  let shortcutInput = $('#' + event.target.id);
+      shortcutInput.val('Recording shortcut');
+      shortcutInput.addClass('active');
+
+  Mousetrap.record(function(sequence) {
+    const combo = parseCombo(sequence[0]);
+    optionsObj.shortcuts[event.target.id] = combo;
+    shortcutInput.val(combo);
+    shortcutInput.blur();
+  });
+});
+
+$('.shortcutInput').blur((event) => {
+  let shortcutInput = $('#' + event.target.id);
+  let combo = optionsObj.shortcuts[event.target.id];
+
+  $(shortcutInput).val(combo);
+  $(shortcutInput).removeClass('active');
 });
 
 //////

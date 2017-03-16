@@ -7,7 +7,7 @@ const ipc = electron.ipcMain;
 const fs     = require('fs');
 const config = require('../config');
 
-class options {
+module.exports = class {
   constructor(parent){
     this.parent = parent;
 
@@ -35,8 +35,8 @@ class options {
 
     ipc.on('getOptions', (event, arg) => {
       const options = this.options;
-      if(!options.shortcut){
-        options.shortcut = config.defaults.shortcuts.screenshotSelection;
+      if(!options.shortcuts){
+        options.shortcuts = config.defaults.shortcuts;
       }
       event.sender.send('getOptions', options);
     });
@@ -50,9 +50,22 @@ class options {
         }
       }
 
-      if(options.shortcut !== undefined){
-        if(options.shortcut !== this.options.shortcut){
-          this.parent.shortcutManager.updateShortcut('screenshotSelection', this.options.shortcut, options.shortcut);
+      if(options.shortcuts){
+        if(options.shortcuts !== this.options.shortcuts){
+          for(const shortcut of Object.keys(options.shortcuts)){
+            let combo = options.shortcuts[shortcut];
+
+            if(shortcut !== this.options.shortcut){
+              this.parent.shortcutManager
+                         .updateShortcut(shortcut, this.options.shortcuts[shortcut], combo);
+            }
+          }
+        }
+      }
+
+      if(options.services){
+        if(options.services !== this.options.services){
+
         }
       }
 
@@ -90,14 +103,17 @@ class options {
       height: 280,
       resizable: false,
       minimizable: false,
-      //titleBarStyle: 'hidden',
       frame: false,
       fullscreenable: false,
       alwaysOnTop: true,
-      vibrancy: 'dark'
+      vibrancy: 'dark',
+      show: false
     });
 
-    this.win.loadURL(`file://${__dirname}/../view/options.html`);
+    this.win.loadURL(`file://${__dirname}/../view/preferences.html`);
+
+    this.win.on('ready-to-show', this.win.show);
+
     this.win.on('closed', () => {
       this.win = null;
     });
@@ -109,8 +125,6 @@ class options {
 
     this.win.webContents.on('did-finish-load', () => {
       if(update) this.win.webContents.send('showUpdate');
-    })
+    });
   }
 }
-
-module.exports = options;

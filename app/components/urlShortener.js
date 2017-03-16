@@ -9,24 +9,26 @@ const utils    = require('./utils');
 
 const {clipboard}  = require('electron');
 
-class urlShortener {
+module.exports = class {
   constructor(parent){
     this.parent  = parent;
-    this.options = parent.optionsModule;
+    this.options = parent.preferencesModule;
   }
 
   shorten(){
     const clipboardContent = clipboard.readText();
 
+    this.parent.setIcon('active');
+
     if(utils.validateUrl(clipboardContent)){
       const defaultServices = config.defaults.services;
       const services        = this.options.getOption('services');
 
-      let service = defaultServices.shortenUrl;
+      let service = defaultServices.shortenerService;
       let serviceModule;
 
-      if(services.shortenUrl){
-        service = services.shortenUrl;
+      if(services && services.shortenerService){
+        service = services.shortenerService;
       }
 
       if(config.services.shorteners.includes(service)){
@@ -35,15 +37,17 @@ class urlShortener {
           if(!error){
             if(result.link){
               clipboard.writeText(result.link);
-              this.parent.showNotification('URL has been shortened and copied to your clipboard!', 'URL Shortened', result.link);
+              this.parent.showNotification('URL has been shortened and copied to your clipboard', result.link);
+              console.log('URL has been successfully shortened.');
             }
+
+            this.parent.setIcon('default');
           } else {
-            this.parent.showNotification('Unable to shorten selected URL!', 'Error');
+            this.parent.showNotification('Error while trying to shorten that URL');
+            this.parent.setIcon('default');
           }
         });;
       }
     }
   }
 }
-
-module.exports = urlShortener;

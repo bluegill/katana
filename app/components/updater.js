@@ -21,17 +21,23 @@ const {dialog} = electron;
 
 const config = require('../config');
 
-class updater {
+module.exports = class {
   constructor(parent){
     this.parent    = parent;
-    this.options   = parent.optionsModule;
+    this.options   = parent.preferencesModule;
 
     this.updatePath   = 'https://raw.githubusercontent.com/bluegill/katana/master/package.json';
     this.downloadPath = 'https://getkatana.com/download/latest.zip';
 
-    // will be customizable at some point
     this.checkOnLaunch = true;
     this.checkInterval = 12; // 12 hours
+
+    const options = this.options.getOption('updater');
+
+    if(options){
+      if(options.checkOnLaunch === false) this.checkOnLaunch = options.checkOnLaunch;
+      if(options.checkInterval)           this.checkInterval = options.checkInterval;
+    }
 
     if(this.checkOnLaunch) this.checkForUpdate();
 
@@ -157,5 +163,3 @@ class updater {
     });
   }
 }
-
-module.exports = updater;

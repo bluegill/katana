@@ -3,8 +3,8 @@ const os = require('os');
 module.exports = {
   defaults: {
     services: {
-      screenshotHost: 'imgur',
-      shortenUrl: 'bit.ly'
+      uploadService: 'imgur',
+      shortenerService: 'is.gd'
     },
 
     shortcuts: {

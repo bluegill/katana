@@ -2,7 +2,7 @@ const request  = require('request');
 const fs       = require('fs');
 const config   = require('../../config');
 
-class imgur {
+module.exports = class {
   static upload(file, callback){
     console.log('Uploading image to imgur...');
 
@@ -41,5 +41,3 @@ class imgur {
     form.append('image', fs.createReadStream(file));
   }
 }
-
-module.exports = imgur;

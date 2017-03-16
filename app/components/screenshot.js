@@ -9,10 +9,10 @@ const utils    = require('./utils');
 
 const {clipboard}  = require('electron');
 
-class screenshot {
+module.exports = class {
   constructor(parent){
     this.parent    = parent;
-    this.options   = parent.optionsModule;
+    this.options   = parent.preferencesModule;
     this.directory = config.paths.uploads;
 
     if(this.options.getOption('uploadPath')){
@@ -38,19 +38,17 @@ class screenshot {
         const defaultServices = config.defaults.services;
         const services        = this.options.getOption('services'); // todo: rewrite config to support url shorteners/file hosts
 
-        let service = defaultServices.screenshotHost;
+        let service = defaultServices.uploadService;
         let serviceModule;
 
-        const definedHost     = this.options.getOption('uploadService');
-        if(/*services && services.screenshotHost*/ definedHost){
-          //service = services.screenshotHost;
-          if(service !== definedHost) service = definedHost;
+        if(services && services.uploadService){
+          service = services.uploadService;
         }
 
         if(service.substr(0, 4) == 'pomf'){
           service = service.split(':')[1];
           service = config.services['pomf'][service];
-          if(service !== undefined){
+          if(service){
             serviceModule = require('./services/pomf');
             serviceModule.setPath(service.uploadPath, service.resultPath);
           }
@@ -66,17 +64,17 @@ class screenshot {
               });
             }
 
-            if(result.link !== undefined){
+            if(result.link){
               clipboard.writeText(result.link);
             }
 
-            console.log('Upload successful!');
-
             this.parent.setIcon('default');
-            this.parent.showNotification('Screenshot has been successfully uploaded and copied to your clipboard!', 'Screenshot uploaded', result.link);
+            this.parent.showNotification('Screenshot has been successfully uploaded and copied to your clipboard!', result.link);
+
+            console.log('Upload successful!');
           } else {
             this.parent.setIcon('default');
-            this.parent.showNotification('Unable to upload screenshot', 'Upload error');
+            this.parent.showNotification('Unable to upload screenshot');
 
             console.log(error);
           }
@@ -104,5 +102,3 @@ class screenshot {
     });
   }
 }
-
-module.exports = screenshot;

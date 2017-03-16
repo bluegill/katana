@@ -16,11 +16,11 @@ module.exports = class {
       if(!error){
         try {
           const data = JSON.parse(body);
-          
+
           return callback({
             link: data.shorturl
           });
-          
+
         } catch(error){
           return callback(null, error);
         }
@@ -30,4 +30,3 @@ module.exports = class {
     });
   }
 }
-

@@ -14,7 +14,7 @@ const ipc = electron.ipcMain;
 
 const config = require('./config');
 
-class app {
+new class main {
   constructor(){
     this.appPath = electron.app.getPath('exe').split('.app/Content')[0] + '.app';
 
@@ -25,17 +25,18 @@ class app {
       });
     }
 
+    // not working when running in development; will fix at later point
     notifier = new notificationCenter({
       withFallback: true,
       customPath: this.appPath + '/Contents/Resources/app.asar.unpacked/app/resources/notifier.app/Contents/MacOS/terminal-notifier'
     });
 
-    this.optionsModule    = new (require('./components/options'))(this);
-    this.updaterModule    = new (require('./components/updater'))(this);
-    this.screenshotModule = new (require('./components/screenshot'))(this);
-    //this.shortenerModule  = new (require('./components/urlShortener'))(this);
+    this.preferencesModule    = new (require('./components/preferences'))(this);
+    this.updaterModule        = new (require('./components/updater'))(this);
+    this.screenshotModule     = new (require('./components/screenshot'))(this);
+    this.shortenerModule      = new (require('./components/urlShortener'))(this);
 
-    const startAtLogin = this.optionsModule.getOption('startAtLogin');
+    const startAtLogin = this.preferencesModule.getOption('startAtLogin');
 
     if(startAtLogin === true && this.appLauncher){
       this.appLauncher.enable();
@@ -68,9 +69,13 @@ class app {
     this.app = electron.app;
     this.app.dock.hide();
 
-    if(this.optionsModule.getOption('showIcon')){
+    if(this.preferencesModule.getOption('showIcon')){
       this.app.dock.show();
     }
+
+    // supposedly helps with performance?
+    // who knows, if it causes issues i can yank it
+    this.app.commandLine.appendSwitch('disable-renderer-backgrounding');
 
     this.app.on('ready', () => {
       this.shortcutManager = new shortcutManager(this);
@@ -86,7 +91,7 @@ class app {
         {label: '', type: 'separator'},
 
         {label: 'Preferences...', accelerator: 'Cmd+,', type: 'normal', click: () => {
-          this.optionsModule.showWindow();
+          this.preferencesModule.showWindow();
         }},
 
 
@@ -100,7 +105,7 @@ class app {
     });
   }
 
-  showNotification(message, title, url){
+  showNotification(message, url){
     notifier.notify({
       title: 'Katana',
       message: message,
@@ -113,5 +118,3 @@ class app {
     this.tray.setImage(config.icons.tray[type]);
   }
 }
-
-new app();

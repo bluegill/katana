@@ -3,7 +3,7 @@
   <head>
     <title>Katana</title>
 
-    <link rel="stylesheet" href="../resources/css/options.css">
+    <link rel="stylesheet" href="../resources/css/preferences.css">
   </head>
 
   <body>
@@ -50,7 +50,7 @@
         </p>
 
         <div class="progress">
-          Downloading...
+          <span class="octicon octicon-sync icon-text spin"></span> Downloading...
           <div class="bar">
             <div class="indeterminate"></div>
           </div>
@@ -103,14 +103,14 @@
             <p class="title">Capture Screenshot</p>
             <p class="subtitle">Capture and upload a screenshot</p>
 
-            <div id="shortcutInput" class="control"></div>
+            <input id="screenshotSelection" class="control shortcutInput" value="None" />
           </div>
 
-          <div class="section disabled">
+          <div class="section">
             <p class="title">Shorten URL</p>
             <p class="subtitle">Shorten any URL that is copied to your clipboard</p>
 
-            <div id="shortenInput" class="control">None</div>
+            <input id="shortenUrl" class="control shortcutInput" value="None" />
           </div>
         </div>
       </div>
@@ -137,12 +137,13 @@
             </select>
           </div>
 
-          <div class="section disabled">
+          <div class="section">
             <p class="title">URL Shortener</p>
             <p class="subtitle">The URL shortener to use when shortening links</p>
 
-            <select id="shortenerService" class="control" disabled>
+            <select name="shortenerService" class="control">
               <option value="is.gd">is.gd</option>
+              <option value="v.gd">v.gd</option>
             </select>
           </div>
         </div>
@@ -152,15 +153,12 @@
         <h3>About</h3>
 
         <div class="content">
+          <div class="section">
+            <h3>Katana</h3>
+            <h4>Katana is a free, open-source screenshot utility that lives in your menubar.</h4>
+          </div>
 
-          <h3>Katana</h3>
-          <h4>Katana is a free, open-source screenshot utility that lives in your menubar.</h4>
-
-          <p>
-            <a class="button primary" href="#check">
-              <span class="octicon octicon-cloud-download icon-text"></span> Check for update
-            </a>
-
+          <div class="section" style="border-bottom: none">
             <a class="button" href="https://getkatana.com/" target="_blank">
               <span class="octicon octicon-globe icon-text"></span> Website
             </a>
@@ -168,11 +166,15 @@
             <a class="button" href="https://github.com/bluegill/katana" target="_blank">
               <span class="octicon octicon-mark-github icon-text"></span> GitHub
             </a>
-          </p>
+
+            <a class="button primary small" href="#check">
+              <span class="octicon octicon-sync icon-text"></span> Check for update
+            </a>
+          </div>
 
           <p>
-            <a href="https://getkatana.com/about/license" target="_blank">License</a> &nbsp; &middot; &nbsp;
-            <a href="https://getkatana.com/about/credits" target="_blank">Credits</a> &nbsp; &middot; &nbsp;
+            <a href="https://getkatana.com/about/license" target="_blank">License</a> &middot;
+            <a href="https://getkatana.com/about/credits" target="_blank">Credits</a> &middot;
             Made by <a href="https://128mb.net/" target="_blank">128mb</a>
           </p>
         </div>
@@ -180,5 +182,5 @@
     </div>
   </body>
 
-  <script>require('./lib/options.js');</script>
+  <script>require('./lib/preferences.js');</script>
 </html>

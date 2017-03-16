@@ -105,6 +105,10 @@ img, button, a, input {
   padding-left: 10px;
 }
 
+.container > .view h4 {
+  margin-bottom: 10px;
+}
+
 .container > .view > .content {
   margin-top: 30px;
   width: 380px;
@@ -241,9 +245,6 @@ input:checked + .slider:before {
   position: absolute;
   right: 114px;
   bottom: 0px;
-}
-
-#about p:last-child {
   font-size: 10px;
 }
 
@@ -255,6 +256,10 @@ input:checked + .slider:before {
 
 #about a:hover {
   opacity: 0.75;
+}
+
+#about .section:last-child {
+  border-bottom: none;
 }
 
 .backdrop {
@@ -321,16 +326,16 @@ select.control {
   width: 140px;
 }
 
-div.control {
-  width: 200px;
-  margin-bottom: 12px;
-  height: 14px;
-}
-
 select.control {
   padding-top: 3px;
   padding-bottom: 5px;
   margin-bottom: 12px;
+}
+
+.shortcutInput {
+  width: 200px;
+  margin-bottom: 12px;
+  height: 14px;
 }
 
 .button {
@@ -364,14 +369,27 @@ select.control {
   background: linear-gradient(to bottom, #439df7 0%, #207FDD 100%);
   color: #fff !important;
   border: 1px solid #207FDD;
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.button.small {
+  padding: 4px 6px;
+  font-size: 10px;
+  width: 110px;
+}
+
+.button.small > span {
+  font-size: 14px !important;
 }
 
 .progress {
   display: none;
-
   font-size: 11px;
+}
+
+.progress > .octicon {
+  font-size: 12px;
+  margin-right: 2px;
 }
 
 .progress > .bar {
@@ -398,7 +416,7 @@ select.control {
   left: 0;
   bottom: 0;
   will-change: left, right;
-  animation: indeterminate 2s linear infinite;
+  animation: indeterminate 3s linear infinite;
   border-radius: 6px;
 }
 
@@ -410,9 +428,25 @@ select.control {
   left: 0;
   bottom: 0;
   will-change: left, right;
-  animation: indeterminate 2s linear infinite;
+  animation: indeterminate 3s linear infinite;
   animation-delay: 1.15s;
   border-radius: 6px;
+}
+
+.spin {
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
 
 
