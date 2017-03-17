@@ -1,4 +1,4 @@
-# <img src='http://i.imgur.com/NkCTU6e.png' style='vertical-align:middle' width='48' alt='Katana Icon'> &nbsp; Katana
+# <img src='http://i.imgur.com/tfqdvrI.png' height='42' alt='Katana Icon'>
 
 <a href='https://david-dm.org/bluegill/katana'>
   <img src='https://david-dm.org/bluegill/katana.svg' alt='David' />
