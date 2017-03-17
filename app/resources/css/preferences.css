@@ -303,7 +303,7 @@ input:checked + .slider:before {
 .control {
   background-color: rgba(255, 255, 255, 0.8);
   color: #333;
-  padding: 4px 8px;
+  padding: 5px 8px;
   border-radius: 4px !important;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   font-size: 12px;
@@ -322,7 +322,7 @@ input:checked + .slider:before {
 }
 
 select.control {
-  height: 26px;
+  height: 29px;
   width: 140px;
 }
 
@@ -335,7 +335,6 @@ select.control {
 .shortcutInput {
   width: 200px;
   margin-bottom: 12px;
-  height: 14px;
 }
 
 .button {
