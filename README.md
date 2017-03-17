@@ -1,4 +1,4 @@
-# <img src='http://i.imgur.com/NkCTU6e.png' width='48' alt='Katana Icon'> &nbsp; Katana
+# <img src='http://i.imgur.com/NkCTU6e.png' style='vertical-align:middle' width='48' alt='Katana Icon'> &nbsp; Katana
 
 <a href='https://david-dm.org/bluegill/katana'>
   <img src='https://david-dm.org/bluegill/katana.svg' alt='David' />
@@ -16,12 +16,12 @@
   <img src='https://img.shields.io/github/license/bluegill/katana.svg' alt='LICENSE'>
 </a>
 
-## Overview
+### Overview
 Katana is a simple, open screenshot utility for macOS that lives in your menubar.
 
 Downloads available at https://getkatana.com/
 
-## Features
+### Features
 * Upload directly to several different image hosts.
 * Shorten any link that's copied to your clipboard.
 * Customizable shortcuts and preferences.
@@ -32,8 +32,8 @@ Downloads available at https://getkatana.com/
   <img src='http://i.imgur.com/rVVMlrT.png' width='640' alt='Katana Preferences' />
 </div>
 
-## Credits
+### Credits
 https://getkatana.com/about/credits
 
-## License
+### License
 Katana is available under the MIT license.
