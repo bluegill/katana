@@ -1,12 +1,14 @@
 @import url('../octicons/octicons.css');
 
 * {
-  user-select: none !important;
   cursor: default;
   transition: all .2s;
 }
 
 html, body {
+  padding: 0; margin: 0;
+  user-select: none;
+  height: 100%;
   overflow: hidden !important;
   font-family: 'Helvetica Neue';
   font-size: 12px;
@@ -14,11 +16,12 @@ html, body {
   max-width: 480px !important;
 }
 
-html, body, .sidebar, .container {
-  -webkit-app-region: drag;
+body {
+  animation: fadeIn 0.7s;
 }
 
-html {
+html, body, .sidebar, .container {
+  -webkit-app-region: drag;
 }
 
 img, button, a, input {
@@ -184,7 +187,7 @@ img, button, a, input {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #aaa;
+  background-color: rgba(0, 0, 0, 0.15);
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 12px;
@@ -241,7 +244,7 @@ input:checked + .slider:before {
   opacity: 0.75;
 }
 
-#about p:last-child {
+#about > .content > p:last-child {
   position: absolute;
   right: 114px;
   bottom: 0px;
@@ -251,7 +254,6 @@ input:checked + .slider:before {
 #about a {
   text-decoration: none;
   color: #333;
-  font-weight: 600;
 }
 
 #about a:hover {
@@ -480,5 +482,14 @@ select.control {
   100% {
     left: 107%;
     right: -8%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
