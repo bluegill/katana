@@ -33,7 +33,9 @@ Downloads available at https://getkatana.com/
 </div>
 
 ### Credits
-https://getkatana.com/about/credits
+Application icons based off work by <a href="https://dribbble.com/sweetthye">Gregory Thye</a>
+
+https://getkatana.com/about/credits/
 
 ### License
 Katana is available under the MIT license.
