@@ -10,7 +10,7 @@ html, body {
   user-select: none;
   height: 100%;
   overflow: hidden !important;
-  font-family: 'Helvetica Neue';
+  font-family: -apple-system, 'Helvetica Neue', 'Lucida Grande';
   font-size: 12px;
   width: 480px !important;
   max-width: 480px !important;
@@ -235,6 +235,7 @@ input:checked + .slider:before {
 }
 
 #about h3 {
+  font-weight: 500;
   margin-bottom: 0px;
 }
 
@@ -330,7 +331,7 @@ select.control {
 
 select.control {
   padding-top: 3px;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
   margin-bottom: 12px;
 }
 
