@@ -1,4 +1,4 @@
-const os = require('os');
+const os = require('os')
 
 module.exports = {
   defaults: {
@@ -25,7 +25,7 @@ module.exports = {
 
   paths: {
     application: `${os.homedir()}/.katana`,
-    uploads: `${os.homedir()}/.katana/uploads`,
+    uploads: `${os.homedir()}/.katana/uploads`
   },
 
   services: {
@@ -65,5 +65,5 @@ module.exports = {
     },
 
     shorteners: ['is.gd', 'v.gd']
-  },
+  }
 }
