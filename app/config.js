@@ -38,29 +38,29 @@ module.exports = {
         uploadPath: 'https://aww.moe/upload.php',
         resultPath: 'https://aww.moe'
       },
-      'mixtape.moe': {
-        uploadPath: 'https://mixtape.moe/upload.php',
-        resultPath: 'https://my.mixtape.moe'
-      },
-      'pomf.cat': {
-        uploadPath: 'https://pomf.cat/upload.php',
-        resultPath: 'https://a.pomf.cat'
-      },
-      'nya.is': {
-        uploadPath: 'https://nya.is/upload.php',
-        resultPath: 'https://u.nya.is'
-      },
       'cocaine.ninja': {
         uploadPath: 'https://cocaine.ninja/upload.php',
         resultPath: 'https://a.cocaine.ninja'
+      },
+      'comfy.moe': {
+        uploadPath: 'https://comfy.moe/upload.php',
+        resultPath: 'https://comfy.moe'
       },
       'desu.sh': {
         uploadPath: 'https://desu.sh/upload.php',
         resultPath: 'https://a.desu.sh'
       },
-      'comfy.moe': {
-        uploadPath: 'https://comfy.moe/upload.php',
-        resultPath: 'https://comfy.moe'
+      'mixtape.moe': {
+        uploadPath: 'https://mixtape.moe/upload.php',
+        resultPath: 'https://my.mixtape.moe'
+      },
+      'nya.is': {
+        uploadPath: 'https://nya.is/upload.php',
+        resultPath: 'https://u.nya.is'
+      },
+      'pomf.cat': {
+        uploadPath: 'https://pomf.cat/upload.php',
+        resultPath: 'https://a.pomf.cat'
       },
       'safe.moe': {
         uploadPath: 'https://safe.moe/upload.php',
