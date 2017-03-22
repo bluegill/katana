@@ -68,6 +68,6 @@ module.exports = {
       }
     },
 
-    shorteners: ['is.gd', 'v.gd']
+    shorteners: ['is.gd', 'v.gd', 'goo.gl']
   }
 }
