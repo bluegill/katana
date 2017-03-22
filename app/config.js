@@ -50,10 +50,6 @@ module.exports = {
         uploadPath: 'https://nya.is/upload.php',
         resultPath: 'https://u.nya.is'
       },
-      'reich.io': {
-        uploadPath: 'https://reich.io/upload.php',
-        resultPath: 'https://b.reich.io'
-      },
       'cocaine.ninja': {
         uploadPath: 'https://cocaine.ninja/upload.php',
         resultPath: 'https://a.cocaine.ninja'
