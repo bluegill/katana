@@ -50,6 +50,8 @@ module.exports = class {
             serviceModule = require('./services/pomf')
             serviceModule.setPath(service.uploadPath, service.resultPath)
           }
+        } else if (service === 'cubeupload') {
+          serviceModule = require('./services/cubeupload')
         } else {
           serviceModule = require('./services/imgur')
         }
