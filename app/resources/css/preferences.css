@@ -10,7 +10,7 @@ html, body {
   user-select: none;
   height: 100%;
   overflow: hidden !important;
-  font-family: BlinkMacSystemFont, -apple-system, 'Helvetica Neue', 'Lucida Grande';
+  font-family: /*BlinkMacSystemFont, -apple-system,*/ 'Helvetica Neue', 'Lucida Grande';
   font-size: 12px;
   width: 480px !important;
   max-width: 480px !important;
