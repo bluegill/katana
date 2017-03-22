@@ -57,6 +57,14 @@ module.exports = {
       'desu.sh': {
         uploadPath: 'https://desu.sh/upload.php',
         resultPath: 'https://a.desu.sh'
+      },
+      'comfy.moe': {
+        uploadPath: 'https://comfy.moe/upload.php',
+        resultPath: 'https://comfy.moe'
+      },
+      'safe.moe': {
+        uploadPath: 'https://safe.moe/upload.php',
+        resultPath: 'https://a.safe.moe'
       }
     },
 
