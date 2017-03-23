@@ -40,7 +40,7 @@ module.exports = class {
     })
   }
 
-  upload (file, callback) {
+  upload (file, callback, tray) {
     try {
       fs.statSync(file)
 
@@ -71,7 +71,7 @@ module.exports = class {
 
       serviceModule.upload(file, (result, error) => {
         if (!error) {
-          if (this.options.getOption('deleteOnUpload')) {
+          if (this.options.getOption('deleteOnUpload') && !tray) {
             fs.unlink(file, (error) => {
               if (error) {
                 callback(null, error)
