@@ -107,6 +107,25 @@ const app = new class {
           }}
       ])
 
+      this.tray.on('drop-files', (event, files) => {
+        const file = files[0]
+        const ext = file.split('.').pop()
+
+        const allowed = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'pdf']
+
+        if (allowed.includes(ext)) {
+          console.log('Uploading image...')
+
+          this.screenshotModule.upload(file, (result, error) => {
+            if (!error) {
+              this.showNotification('Image has been successfully uploaded and copied to your clipboard!', result.link)
+            } else {
+              this.showNotification('Unable to upload screenshot')
+            }
+          }, true)
+        }
+      })
+
       this.tray.setToolTip('Katana')
       this.tray.setContextMenu(contextMenu)
     })
