@@ -1,7 +1,7 @@
 {
   "name": "Katana",
   "description": "Open-source screenshot utility that lives in your menubar.",
-  "version": "0.2.3b",
+  "version": "0.2.4",
   "main": "./app/index.js",
   "author": {
     "name": "128mb",
