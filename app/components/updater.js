@@ -20,7 +20,7 @@ module.exports = class {
     this.options = parent.preferencesModule
 
     this.updatePath = 'https://raw.githubusercontent.com/bluegill/katana/master/package.json'
-    this.downloadPath = 'https://getkatana.com/download/latest.zip'
+    this.downloadPath = 'https://github.com/bluegill/katana/releases/download/'
 
     this.checkOnLaunch = true
     this.checkInterval = 12 // 12 hours
@@ -80,6 +80,10 @@ module.exports = class {
 
         if (json.version !== pkg.version) {
           console.log('Update available!')
+
+          const binary = `katana-${json.version}-mac.zip`
+
+          this.downloadPath += `v${json.version}/${binary}`
 
           this.options.showWindow(true)
           this.options.win.webContents.send('showUpdate')
