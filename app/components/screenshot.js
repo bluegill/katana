@@ -28,63 +28,77 @@ module.exports = class {
 
   captureSelection () {
     this.execute(this.directory, (file, error) => {
-      try {
-        fs.statSync(file)
-
-        this.parent.setIcon('active')
-
-        const defaultServices = config.defaults.services
-        const services = this.options.getOption('services') // todo: rewrite config to support url shorteners/file hosts
-
-        let service = defaultServices.uploadService
-        let serviceModule
-
-        if (services && services.uploadService) {
-          service = services.uploadService
-        }
-
-        if (service.substr(0, 4) === 'pomf') {
-          service = service.split(':')[1]
-          service = config.services['pomf'][service]
-          if (service) {
-            serviceModule = require('./services/pomf')
-            serviceModule.setPath(service.uploadPath, service.resultPath)
-          }
-        } else if (service === 'cubeupload') {
-          serviceModule = require('./services/cubeupload')
+      this.upload(file, (result, error) => {
+        if (!error) {
+          this.parent.showNotification('Screenshot has been successfully uploaded and copied to your clipboard!', result.link)
         } else {
-          serviceModule = require('./services/imgur')
+          console.log(error)
+
+          this.parent.showNotification('Unable to upload screenshot')
         }
-
-        serviceModule.upload(file, (result, error) => {
-          if (!error) {
-            if (this.options.getOption('deleteOnUpload')) {
-              fs.unlink(file, (error) => {
-                if (error) {
-                  // handle error
-                }
-              })
-            }
-
-            if (result.link) {
-              clipboard.writeText(result.link)
-            }
-
-            this.parent.setIcon('default')
-            this.parent.showNotification('Screenshot has been successfully uploaded and copied to your clipboard!', result.link)
-
-            console.log('Upload successful!')
-          } else {
-            this.parent.setIcon('default')
-            this.parent.showNotification('Unable to upload screenshot')
-
-            console.log(error)
-          }
-        })
-      } catch (error) {
-        this.parent.setIcon('default')
-      }
+      })
     })
+  }
+
+  upload (file, callback) {
+    try {
+      fs.statSync(file)
+
+      this.parent.setIcon('active')
+
+      const defaultServices = config.defaults.services
+      const services = this.options.getOption('services')
+
+      let service = defaultServices.uploadService
+      let serviceModule
+
+      if (services && services.uploadService) {
+        service = services.uploadService
+      }
+
+      if (service.substr(0, 4) === 'pomf') {
+        service = service.split(':')[1]
+        service = config.services['pomf'][service]
+        if (service) {
+          serviceModule = require('./services/pomf')
+          serviceModule.setPath(service.uploadPath, service.resultPath)
+        }
+      } else if (service === 'cubeupload') {
+        serviceModule = require('./services/cubeupload')
+      } else {
+        serviceModule = require('./services/imgur')
+      }
+
+      serviceModule.upload(file, (result, error) => {
+        if (!error) {
+          if (this.options.getOption('deleteOnUpload')) {
+            fs.unlink(file, (error) => {
+              if (error) {
+                callback(null, error)
+              }
+            })
+          }
+
+          if (result.link) {
+            clipboard.writeText(result.link)
+          }
+
+          callback(result, false)
+
+          this.parent.setIcon('default')
+
+          console.log('Upload successful!')
+        } else {
+          callback(null, error)
+
+          this.parent.setIcon('default')
+        }
+      })
+    } catch (error) {
+      callback(null, error)
+
+      this.parent.setIcon('default')
+    }
   }
 
   execute (dir, callback) {
