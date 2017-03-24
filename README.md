@@ -16,14 +16,10 @@
   <img src='https://img.shields.io/github/release/bluegill/katana.svg' alt='Release'>
 </a>
 
-<a href='https://github.com/bluegill/katana/blob/master/LICENSE'>
-  <img src='https://img.shields.io/github/license/bluegill/katana.svg' alt='License'>
-</a>
-
 ### Overview
-Katana is a simple, open screenshot utility for macOS that lives in your menubar.
+Katana is a simple, open-source screenshot utility for macOS that lives in your menubar.
 
-Downloads available on the <a href='https://github.com/bluegill/katana/releases'>releases page</a>.
+Downloads available on the <a href='https://github.com/bluegill/katana/releases'>releases page</a>, or at https://getkatana.com/.
 
 ### Features
 * Upload to several different image hosts, including Imgur and Pomf.
