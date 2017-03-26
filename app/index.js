@@ -82,29 +82,39 @@ const app = new class {
       this.tray = new Tray(config.icons.tray.default)
 
       const contextMenu = Menu.buildFromTemplate([
-        {label: 'Take Screenshot',
+        {
+          label: 'Take Screenshot',
           type: 'normal',
           click: () => {
             this.screenshotModule.captureSelection()
-          }},
+          }
+        },
 
-        {label: 'Recent', type: 'normal', enabled: false},
-
-        {label: '', type: 'separator'},
-
-        {label: 'Preferences...',
-          accelerator: 'Cmd+,',
+        {
+          label: 'Recent',
           type: 'normal',
+          enabled: false
+        },
+
+        { type: 'separator' },
+
+        {
+          label: 'Preferences...',
+          type: 'normal',
+          accelerator: 'Cmd+,',
           click: () => {
             this.preferencesModule.showWindow()
-          }},
+          }
+        },
 
-        {label: 'Quit',
-          accelerator: 'Cmd+Q',
+        {
+          label: 'Quit',
           type: 'normal',
+          accelerator: 'Cmd+Q',
           click: () => {
             this.app.quit()
-          }}
+          }
+        }
       ])
 
       this.tray.on('drop-files', (event, files) => {

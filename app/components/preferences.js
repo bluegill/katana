@@ -63,12 +63,6 @@ module.exports = class {
         }
       }
 
-      if (options.services) {
-        if (options.services !== this.options.services) {
-
-        }
-      }
-
       if (options.showIcon === true) {
         app.dock.show()
       } else {
