@@ -34,17 +34,9 @@ module.exports = {
     },
 
     pomf: {
-      'aww.moe': {
-        uploadPath: 'https://aww.moe/upload.php',
-        resultPath: 'https://aww.moe'
-      },
       'cocaine.ninja': {
         uploadPath: 'https://cocaine.ninja/upload.php',
         resultPath: 'https://a.cocaine.ninja'
-      },
-      'comfy.moe': {
-        uploadPath: 'https://comfy.moe/upload.php',
-        resultPath: 'https://comfy.moe'
       },
       'desu.sh': {
         uploadPath: 'https://desu.sh/upload.php',
@@ -53,10 +45,6 @@ module.exports = {
       'mixtape.moe': {
         uploadPath: 'https://mixtape.moe/upload.php',
         resultPath: 'https://my.mixtape.moe'
-      },
-      'nya.is': {
-        uploadPath: 'https://nya.is/upload.php',
-        resultPath: 'https://u.nya.is'
       },
       'pomf.cat': {
         uploadPath: 'https://pomf.cat/upload.php',
