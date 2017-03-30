@@ -67,7 +67,7 @@ module.exports = {
         resultPath: 'https://a.pomf.cat'
       },
       'safe.moe': {
-        uploadPath: 'https://safe.moe/upload.php',
+        uploadPath: 'https://safe.moe/api/upload',
         resultPath: 'https://a.safe.moe'
       }
     },
