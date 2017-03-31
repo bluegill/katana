@@ -9,6 +9,12 @@ module.exports = class {
       url: this.uploadPath
     }
 
+    if (this.token) {
+      options.headers = {
+        'token': this.token
+      }
+    }
+
     const post = request.post(options, (error, req, body) => {
       if (error) {
         return callback(null, error)
@@ -44,5 +50,9 @@ module.exports = class {
   static setPath (uploadPath, resultPath) {
     this.uploadPath = uploadPath
     this.resultPath = resultPath
+  }
+
+  static setToken (token) {
+    this.token = token
   }
 }

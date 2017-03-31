@@ -63,6 +63,10 @@ module.exports = class {
         if (service) {
           serviceModule = require('./services/pomf')
           serviceModule.setPath(service.uploadPath, service.resultPath)
+
+          if (service.token) {
+            serviceModule.setToken(service.token)
+          }
         }
       } else if (service === 'cubeupload') {
         serviceModule = require('./services/cubeupload')
