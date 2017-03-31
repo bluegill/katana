@@ -50,6 +50,11 @@ module.exports = {
         uploadPath: 'https://doko.moe/upload.php',
         resultPath: 'https://a.doko.moe'
       },
+      'jew.cat': {
+        uploadPath: 'https://jew.cat/api/upload',
+        resultPath: 'https://a.jew.cat',
+        token: '6IjAWIFEgBBnarxKAjDVGktefCF1hTLO0dcn9PmQwOhlR9mdMU70chitgogJIubu'
+      },
       'mixtape.moe': {
         uploadPath: 'https://mixtape.moe/upload.php',
         resultPath: 'https://my.mixtape.moe'
