@@ -59,6 +59,7 @@ module.exports = class {
       if (service.substr(0, 4) === 'pomf') {
         service = service.split(':')[1]
         service = config.services['pomf'][service]
+
         if (service) {
           serviceModule = require('./services/pomf')
           serviceModule.setPath(service.uploadPath, service.resultPath)

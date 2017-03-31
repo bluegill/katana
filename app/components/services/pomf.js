@@ -2,11 +2,6 @@ const request = require('request')
 const fs = require('fs')
 
 module.exports = class {
-  static setPath (uploadPath, resultPath) {
-    this.uploadPath = uploadPath
-    this.resultPath = resultPath
-  }
-
   static upload (file, callback) {
     console.log('Uploading image to pomf...')
 
@@ -41,7 +36,13 @@ module.exports = class {
     })
 
     let form = post.form()
+
     form.append('type', 'file')
     form.append('files[]', fs.createReadStream(file))
+  }
+
+  static setPath (uploadPath, resultPath) {
+    this.uploadPath = uploadPath
+    this.resultPath = resultPath
   }
 }

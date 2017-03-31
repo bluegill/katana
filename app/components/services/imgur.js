@@ -37,6 +37,7 @@ module.exports = class {
     })
 
     let form = post.form()
+
     form.append('type', 'file')
     form.append('image', fs.createReadStream(file))
   }
