@@ -19,17 +19,25 @@ const app = new class {
     this.appPath = electron.app.getPath('exe').split('.app/Content')[0] + '.app'
 
     if (!this.appPath.includes('electron')) {
+
       this.appLauncher = new AutoLaunch({
         name: 'Katana',
         path: this.appPath
       })
-    }
 
-    // not working when running in development; will fix at later point
-    notifier = new NotificationCenter({
-      withFallback: true,
-      customPath: this.appPath + '/Contents/Resources/app.asar.unpacked/app/resources/notifier.app/Contents/MacOS/terminal-notifier'
-    })
+      notifier = new NotificationCenter({
+        withFallback: true,
+        customPath: this.appPath + '/Contents/Resources/app.asar.unpacked/app/resources/notifier.app/Contents/MacOS/terminal-notifier'
+      })
+
+    } else if (this.appPath.includes('electron')) {
+
+      notifier = new NotificationCenter({
+        withFallback: true,
+        customPath: __dirname + '/resources/notifier.app/Contents/MacOS/terminal-notifier'
+      })
+
+    }
 
     this.preferencesModule = new (require('./components/preferences'))(this)
     this.updaterModule = new (require('./components/updater'))(this)
