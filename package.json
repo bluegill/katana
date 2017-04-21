@@ -23,8 +23,6 @@
   },
   "dependencies": {
     "auto-launch": "^5.0.1",
-    "electron": "^1.6.3",
-    "electron-packager": "^8.6.0",
     "fs-extra": "^2.1.2",
     "node-notifier": "^5.1.2",
     "request": "^2.81.0",
@@ -32,7 +30,7 @@
   },
   "devDependencies": {
     "asar": "^0.13.0",
-    "electron": "^1.5.1",
-    "electron-packager": "^8.4.0"
+    "electron": "^1.6.5",
+    "electron-packager": "^8.6.0"
   }
 }
