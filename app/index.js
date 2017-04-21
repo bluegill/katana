@@ -19,7 +19,6 @@ const app = new class {
     this.appPath = electron.app.getPath('exe').split('.app/Content')[0] + '.app'
 
     if (!this.appPath.includes('electron')) {
-
       this.appLauncher = new AutoLaunch({
         name: 'Katana',
         path: this.appPath
@@ -29,14 +28,11 @@ const app = new class {
         withFallback: true,
         customPath: this.appPath + '/Contents/Resources/app.asar.unpacked/app/resources/notifier.app/Contents/MacOS/terminal-notifier'
       })
-
-    } else if (this.appPath.includes('electron')) {
-
+    } else {
       notifier = new NotificationCenter({
         withFallback: true,
         customPath: __dirname + '/resources/notifier.app/Contents/MacOS/terminal-notifier'
       })
-
     }
 
     this.preferencesModule = new (require('./components/preferences'))(this)
