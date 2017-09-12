@@ -97,7 +97,8 @@ const app = new class {
         {
           label: 'Recent',
           type: 'normal',
-          enabled: false
+          submenu: [
+          ]
         },
 
         { type: 'separator' },
