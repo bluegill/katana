@@ -9,12 +9,6 @@ module.exports = class {
       url: this.uploadPath
     }
 
-    if (this.token) {
-      options.headers = {
-        'token': this.token
-      }
-    }
-
     const post = request.post(options, (error, req, body) => {
       if (error) {
         return callback(null, error)
@@ -23,15 +17,15 @@ module.exports = class {
       try {
         let result = JSON.parse(body)
 
-        if (result.success) {
-          result = result.files[0]
+        if (result.success || result.status === 200) {
+          if (result.files) result = result.files[0]
 
-          if (result.url.substr(0, 4) !== 'http') {
+          if (result.url && result.url.substr(0, 4) !== 'http') {
             result.url = `${this.resultPath}/${result.url}`
           }
 
           return callback({
-            'link': result.url
+            'link': (result.url || result.link)
           })
         } else {
           return callback(null, error)

@@ -68,10 +68,8 @@ module.exports = class {
             serviceModule.setToken(service.token)
           }
         }
-      } else if (service === 'cubeupload') {
-        serviceModule = require('./services/cubeupload')
       } else {
-        serviceModule = require('./services/imgur')
+        serviceModule = require(`./services/${service}.js`)
       }
 
       serviceModule.upload(file, (result, error) => {
