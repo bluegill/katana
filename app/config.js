@@ -35,9 +35,9 @@ config.services = {
   },
 
   pomf: {
-    'cocaine.ninja': {
-      uploadPath: 'https://cocaine.ninja/upload.php',
-      resultPath: 'https://a.cocaine.ninja'
+    'catbox.moe': {
+      uploadPath: 'https://catbox.moe/user/api.php',
+      resultPath: 'https://files.catbox.moe'
     },
 
     'comfy.moe': {
@@ -45,35 +45,19 @@ config.services = {
       resultPath: 'https://comfy.moe'
     },
 
-    'desu.sh': {
-      uploadPath: 'https://desu.sh/upload.php',
-      resultPath: 'https://a.desu.sh'
-    },
-
     'doko.moe': {
       uploadPath: 'https://doko.moe/upload.php',
       resultPath: 'https://a.doko.moe'
     },
 
-    'jew.cat': {
-      uploadPath: 'https://jew.cat/api/upload',
-      resultPath: 'https://a.jew.cat',
-      token: '6IjAWIFEgBBnarxKAjDVGktefCF1hTLO0dcn9PmQwOhlR9mdMU70chitgogJIubu'
+    'glop.me': {
+      uploadPath: 'http://glop.me/upload.php',
+      resultPath: 'https://glop.me'
     },
 
     'mixtape.moe': {
       uploadPath: 'https://mixtape.moe/upload.php',
       resultPath: 'https://my.mixtape.moe'
-    },
-
-    'null.vg': {
-      uploadPath: 'https://null.vg/upload.php',
-      resultPath: 'https://dev.null.vg'
-    },
-
-    'nya.is': {
-      uploadPath: 'https://nya.is/upload',
-      resultPath: 'https://u.nya.is'
     },
 
     'pomf.cat': {
@@ -84,6 +68,11 @@ config.services = {
     'safe.moe': {
       uploadPath: 'https://safe.moe/api/upload',
       resultPath: 'https://a.safe.moe'
+    },
+
+    'void.cat': {
+      uploadPath: 'https://void.cat/upload.php',
+      resultPath: 'https://void.cat'
     }
   },
 
