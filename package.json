@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/electron .",
-    "build": "node ./build/index.js"
+    "build": "node ./build"
   },
   "dependencies": {
     "auto-launch": "^5.0.1",
