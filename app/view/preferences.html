@@ -11,6 +11,25 @@
   <app id="__preferences">
     <button class="button-close close"></button>
 
+    <div id="servicePrompt" class="backdrop">
+      <div class="content">
+        <p class="label">Upload Path</p>
+        <p class="sublabel">The pomf upload path, usually a php file location on the root of the domain.</p>
+
+        <input id="uploadPath" name="uploadPath" class="control" placeholder="https://domain.com/upload.php" />
+
+        <p class="label">Result URL</p>
+        <p class="sublabel">The result URL of your screenshot.</p>
+        
+        <input id="resultPath" name="resultPath" class="control" placeholder="https://a.domain.com" />
+
+        <div class="right">
+          <button class="button button-cancel close-prompt" name="cancel">Cancel</button> &nbsp;&nbsp; 
+          <button class="button button-save" name="save">Save</button>
+        </div>
+      </div>
+    </div>
+
     <div id="updatePrompt" class="backdrop">
       <div class="content">
         <i class="icon ion-ios-cloud-download-outline animated tada"></i>

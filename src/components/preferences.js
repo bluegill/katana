@@ -76,6 +76,10 @@ module.exports = class {
         }
       }
 
+      console.log(this.options.customService)
+
+      if (this.options.customService) options.customService = this.options.customService
+
       if (options.history) delete options.history
       if (options.hosts) delete options.hosts
 
@@ -84,6 +88,10 @@ module.exports = class {
       this.window.close()
 
       this.saveOptions(options)
+    })
+
+    ipc.on('updateService', (event, service) => {
+      this.options.customService = service
     })
 
     ipc.on('log', (event, message) => {
@@ -102,6 +110,8 @@ module.exports = class {
   }
 
   saveOptions(options) {
+    console.log(options)
+
     if (options !== undefined) this.options = options
 
     const json = JSON.stringify(this.options)

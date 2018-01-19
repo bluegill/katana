@@ -159,7 +159,6 @@ a:hover {
   background: transparent !important;
   color: #333;
   text-decoration: underline !important;
-  outline: none !important;
   padding: 8px 4px;
   border: none !important;
   font-size: 12px !important;
@@ -420,6 +419,53 @@ span.helper {
   vertical-align: middle;
 }
 
+#uploadPath {
+  margin-bottom: 20px;
+}
+
+#servicePrompt {}
+
+#servicePrompt input {
+  width: 200px;
+}
+
+#servicePrompt>.content {
+  text-align: left;
+  padding: 28px;
+  margin-top: 22px;
+}
+
+#servicePrompt>.content p {
+  padding: 0px;
+  margin: 0px;
+}
+
+#servicePrompt>.content .title {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+#servicePrompt>.content .label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#servicePrompt>.content .sublabel {
+  opacity: 0.5;
+}
+
+.button-save {
+  background: #50AC50 !important;
+  color: #eee !important;
+}
+
+.right {
+  margin-top: 20px;
+  margin-right: -10px;
+  margin-bottom: -20px;
+  text-align: right;
+}
+
 .control {
   background-color: rgba(255, 255, 255, 0.8);
   color: #000;
@@ -471,6 +517,8 @@ div.title {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(238, 238, 238, 1) 100%);
   color: #000;
   padding: 6px 8px;
+  border: none;
+  outline: none !important;
   border-radius: 4px !important;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   font-size: 12px;
@@ -480,13 +528,13 @@ div.title {
   width: 100px;
   margin: 8px 0px;
   text-decoration: none;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .button:hover {
   opacity: 1 !important;
   color: #000;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .button>.icon {

@@ -36,7 +36,7 @@ module.exports = class {
     let screenshots = db.get('screenshots')
       .map('url')
       .sortBy('timestamp')
-      .take(10)
+      .take(15)
       .value()
 
     return screenshots

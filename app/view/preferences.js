@@ -14,6 +14,10 @@ $('.close').click(() => {
   saveAndClose()
 })
 
+$('.close-prompt').click(() => {
+  $('.backdrop').hide()
+})
+
 ipc.send('getOptions')
 ipc.send('getVersion')
 
@@ -33,7 +37,7 @@ ipc.on('getOptions', (event, options) => {
     $(select).append(option)
   }
 
-  for (const key in options.history) {
+  for (const key in options.history.reverse()) {
     let screenshot = options.history[key]
 
     let element = `<li class="screenshot">
@@ -63,10 +67,23 @@ ipc.on('getOptions', (event, options) => {
   if (options.services && options.services.shortenerService) {
     $('select[name="shortenerService"]').val(options.services.shortenerService)
   }
+
+  if (options.customService) {
+    $('#servicePrompt input[name="uploadPath"]').val(options.customService.uploadPath)
+    $('select[name="uploadService"]').val('custom')
+  }
+
+  if (options.customService) {
+    $('#servicePrompt input[name="resultPath"]').val(options.customService.resultPath)
+  }
 })
 
 ipc.on('showUpdate', (event) => {
-  $('.backdrop').fadeIn(200)
+  showPrompt('#updatePrompt')
+})
+
+ipc.on('showService', (event, current) => {
+  showPrompt('#servicePrompt')
 })
 
 $('.sidebar li').click((event) => {
@@ -80,6 +97,17 @@ $('.sidebar li').click((event) => {
   }
 
   switchView(url, event.target)
+})
+
+$('#servicePrompt button[name="save"]').click(() => {
+  let uploadPath = $('#servicePrompt input[name="uploadPath"]').val()
+  let resultPath = $('#servicePrompt input[name="resultPath"]').val()
+
+  if (!uploadPath || !resultPath) return
+
+  ipc.send('updateService', { 'uploadPath': uploadPath, 'resultPath': resultPath })
+
+  $('.backdrop').fadeOut(200)
 })
 
 $('a[href="#check"]').click(() => {
@@ -103,6 +131,9 @@ $('input[type="checkbox"]').change(function() {
 
 $('select[name="uploadService"]').change(function() {
   let service = $(this).find('option:selected').val()
+  if (service === 'custom') return (
+    showPrompt('#servicePrompt')
+  )
   if (!optionsObj.services) optionsObj.services = {}
   optionsObj.services.uploadService = service
 })
@@ -138,6 +169,11 @@ $('.shortcutInput').blur((event) => {
 
   $(shortcutInput).parent().find('.icon').hide().removeClass('spin')
 })
+
+function showPrompt(prompt) {
+  //$(prompt).hide()
+  $(prompt).fadeIn(200)
+}
 
 function parseTime(str) {
   const date = new Date(str * 1000)

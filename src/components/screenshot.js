@@ -59,11 +59,18 @@ module.exports = class {
         service = services.uploadService
       }
 
-      if (service.substr(0, 4) === 'pomf') {
+      let customService = this.options.getOption('customService')
+
+      console.log(customService)
+
+      if (service.substr(0, 4) === 'pomf' || customService) {
         service = service.split(':')[1]
         service = config.services['pomf'][service]
 
-        if (service) {
+        if (customService) {
+          serviceModule = require('./services/pomf')
+          serviceModule.setPath(customService.uploadPath, customService.resultPath)
+        } else if (service) {
           serviceModule = require('./services/pomf')
           serviceModule.setPath(service.uploadPath, service.resultPath)
 
