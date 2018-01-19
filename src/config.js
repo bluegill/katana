@@ -35,11 +35,6 @@ config.services = {
   },
 
   pomf: {
-    'catbox.moe': {
-      uploadPath: 'https://catbox.moe/user/api.php',
-      resultPath: 'https://files.catbox.moe'
-    },
-
     'comfy.moe': {
       uploadPath: 'https://comfy.moe/upload.php',
       resultPath: 'https://comfy.moe'
@@ -50,16 +45,6 @@ config.services = {
       resultPath: 'https://a.doko.moe'
     },
 
-    'glop.me': {
-      uploadPath: 'http://glop.me/upload.php',
-      resultPath: 'https://glop.me'
-    },
-
-    'mixtape.moe': {
-      uploadPath: 'https://mixtape.moe/upload.php',
-      resultPath: 'https://my.mixtape.moe'
-    },
-
     'pomf.cat': {
       uploadPath: 'https://pomf.cat/upload.php',
       resultPath: 'https://a.pomf.cat'
@@ -68,11 +53,6 @@ config.services = {
     'sinister.ly': {
       uploadPath: 'https://sister.ly/upload.php',
       resultPath: 'https://a.sinister.ly'
-    },
-
-    'vidga.me': {
-      uploadPath: 'https://vidga.me/upload.php',
-      resultPath: 'https://a.vidga.me'
     },
 
     'void.cat': {
