@@ -5,7 +5,7 @@ const fs = require('fs-extra')
 const options = {
   platform: ['darwin'],
   arch: 'x64',
-  icon: './app/resources/icon.icns',
+  icon: './app/static/images/icon.alt.png',
   dir: '.',
   ignore: ['build'],
   out: './build/Release',
@@ -21,11 +21,14 @@ packager(options, (error, path) => {
   }
 
   console.log(`Package created, path: ${path}`)
+
+  /*
   console.log(`Creating asar archive...`)
 
   const src = './build/Release/Katana-darwin-x64/Katana.app/Contents/Resources/app'
 
-  asar.createPackageWithOptions(src, `${src}.asar`, {unpackDir: 'app/resources/notifier.app'}, () => {
+
+  asar.createPackageWithOptions(src, `${src}.asar`, {}, () => {
     fs.remove(src, error => {
       if (error) {
         console.error(error)
@@ -36,4 +39,5 @@ packager(options, (error, path) => {
       console.log(`Build complete!`)
     })
   })
+  */
 })

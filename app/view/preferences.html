@@ -1,56 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Katana</title>
 
-    <link rel="stylesheet" href="../resources/css/preferences.css">
-  </head>
+<head>
+  <title>Katana</title>
+  <link rel="stylesheet" href="../static/css/preferences.css">
+  <link rel="stylesheet" href="../static/css/ionicons.min.css">
+  <link rel="stylesheet" href="../static/css/animate.css">
+</head>
+<body>
+  <app id="__preferences">
+    <button class="button-close close"></button>
 
-  <body>
-
-    <button id="close"></button>
-
-    <div class="sidebar">
-      <img src="../resources/images/icon.png" />
-
-      <ul>
-        <li class="active">
-          <a href="#general"><span class="octicon octicon-gear icon-text"></span> General</a>
-        </li>
-
-        <li>
-          <a href="#shortcuts"><span class="octicon octicon-settings icon-text"></span> Shortcuts</a>
-        </li>
-
-        <li>
-          <a href="#services"><span class="octicon octicon-cloud-upload icon-text"></span> Services</a>
-        </li>
-
-        <li>
-          <a href="#about"><span class="octicon octicon-info icon-text"></span> About</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="backdrop">
-      <div class="update">
-        <h3>Update Available</h3>
+    <div id="updatePrompt" class="backdrop">
+      <div class="content">
+        <i class="icon ion-ios-cloud-download-outline animated tada"></i>
 
         <p>
-          There is an update available for Katana. Please update to the latest version for the best experience.
+          <strong>Update Available</strong>
         </p>
 
         <p>
-          <span>The appplication will restart after updating</span>
+          Please update the application to the latest version for the best experience.
         </p>
 
+        <br/><!-- hacky css fix -->
+
         <p>
-          <a href="#download" class="button">Download Update</a>
-          <a href="#cancel">I'll do it later</a>
+          <a class="button-update" href="#download">Download & Install</a> or 
+          <a class="button-text" href="#cancel">Cancel</a>
         </p>
 
         <div class="progress">
-          <span class="octicon octicon-sync icon-text spin"></span> Downloading...
           <div class="bar">
             <div class="indeterminate"></div>
           </div>
@@ -58,11 +38,21 @@
       </div>
     </div>
 
+    <div class="sidebar">
+      <ul>
+        <li id="#general" class="active"><i class="icon ion-ios-gear-outline"></i> General</li>
+        <li id="#shortcuts"><i class="icon ion-ios-settings"></i> Shortcuts</li>
+        <li id="#services"><i class="icon ion-ios-cloud-upload-outline"></i> Services</li>
+        <li id="#history"><i class="icon ion-ios-search"></i> History</li>
+        <!--<li id="#save"><i class="icon ion-ios-checkmark-outline"></i> Save</li>-->
+      </ul>
+    </div>
+
     <div class="container">
       <div id="general" class="view">
-        <h3>General</h3>
-
         <div class="content">
+          <h3>General</h3>
+
           <div class="section">
             <p class="title">Start at login</p>
             <p class="subtitle">Launch Katana when your system starts up</p>
@@ -96,45 +86,38 @@
       </div>
 
       <div id="shortcuts" class="view">
-        <h3>Shortcuts</h3>
-
         <div class="content">
+          <h3>Shortcuts</h3>
           <div class="section">
             <p class="title">Capture Screenshot</p>
             <p class="subtitle">Capture and upload a screenshot</p>
-
-            <input id="screenshotSelection" class="control shortcutInput" value="None" readonly />
+            <input id="screenshotSelection" class="control shortcutInput" value="None" readonly /> <i class="icon icon-spin ion-load-c hidden"></i>
           </div>
 
           <div class="section">
             <p class="title">Shorten URL</p>
             <p class="subtitle">Shorten any URL that is copied to your clipboard</p>
-
-            <input id="shortenUrl" class="control shortcutInput" value="None" readonly />
+            <input id="shortenUrl" class="control shortcutInput" value="None" readonly /> <i class="icon icon-spin ion-load-c hidden"></i>
           </div>
         </div>
       </div>
 
       <div id="services" class="view">
-        <h3>Services</h3>
-
         <div class="content">
+          <h3>Services</h3>
+
           <div class="section">
             <p class="title">Upload Service</p>
             <p class="subtitle">The image host where your screenshot will be sent</p>
 
             <select name="uploadService" class="control">
               <option value="imgur">Imgur</option>
+
               <optgroup label="Pomf">
-                <option value="pomf:catbox.moe">catbox.moe</option>
-                <option value="pomf:comfy.moe">comfy.moe</option>
-                <option value="pomf:doko.moe">doko.moe</option>
-                <option value="pomf:glop.me">glop.me</option>
-                <option value="pomf:mixtape.moe">mixtape.moe</option>
-                <option value="pomf:pomf.cat">pomf.cat</option>
-                <option value="pomf:safe.moe">safe.moe</option>
-                <option value="pomf:void.cat">void.cat</option>
+
               </optgroup>
+
+              <option value="custom">Custom</option>
             </select>
           </div>
 
@@ -151,34 +134,18 @@
         </div>
       </div>
 
-      <div id="about" class="view">
-        <h3>About</h3>
-
+      <div id="history" class="view">
         <div class="content">
-          <div class="section">
-            <h3>Katana</h3>
-            <h4>Katana is a free, open-source screenshot utility that lives in your menubar.</h4>
+          <div class="history-container">
+            <ul></ul>
           </div>
-
-          <div class="section" style="border-bottom: none">
-            <a class="button" href="https://getkatana.com/" target="_blank">
-              <span class="octicon octicon-globe icon-text"></span> Website
-            </a>
-
-            <a class="button" href="https://github.com/bluegill/katana" target="_blank">
-              <span class="octicon octicon-mark-github icon-text"></span> GitHub
-            </a>
-          </div>
-
-          <p>
-            <a href="#check">
-              <span class="octicon octicon-sync icon-text"></span>
-            </a>
-          </p>
         </div>
       </div>
     </div>
-  </body>
+  </app>
 
-  <script>require('./lib/preferences.js');</script>
+  <script>
+  require('./preferences.js');
+  </script>
+</body>
 </html>
