@@ -30,7 +30,7 @@ Downloads available on the <a href='https://github.com/bluegill/katana/releases'
 * Constantly evolving, providing new functionality all the time.
 
 <div align='center'>
-  <img src='http://i.imgur.com/rVVMlrT.png' width='640' alt='Katana Preferences' />
+  <img src='https://i.imgur.com/2qbQVly.png' width='640' alt='Katana Preferences' />
 </div>
 
 ### Credits
