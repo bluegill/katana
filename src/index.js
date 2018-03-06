@@ -17,7 +17,8 @@
  *  along with Katana. If not, see <http://www.gnu.org/licenses/>.
  */
 
-const fs = require('fs')
+const fs = require('fs-extra')
+const os = require('os')
 
 const electron = require('electron')
 const AutoLaunch = require('auto-launch')
@@ -25,12 +26,15 @@ const AutoLaunch = require('auto-launch')
 const ShortcutManager = require('./components/shortcutManager')
 const config = require('./config')
 
-const { Tray, Menu, Notification } = electron
+const { Tray, Menu, Notification, shell } = electron
 
 const ipc = electron.ipcMain
 
 const app = new class {
   constructor() {
+    // create application home dir if it doesn't exist
+    fs.ensureDirSync(config.paths.uploads)
+
     this.appPath = electron.app.getPath('exe').split('.app/Content')[0] + '.app'
 
     if (!this.appPath.includes('electron')) {
@@ -58,30 +62,19 @@ const app = new class {
       event.sender.send('getVersion', version)
     })
 
-    // create application home dir if it doesn't exist
-    this.validateHome()
-
     // initialize menu bar
     this.createTray()
   }
 
-  validateHome() {
-    try {
-      fs.statSync(config.paths.application)
-    } catch (e) {
-      if (e.errno === -2) {
-        fs.mkdirSync(config.paths.application)
-        fs.mkdirSync(config.paths.uploads)
-      }
-    }
-  }
-
   createTray() {
     this.app = electron.app
-    this.app.dock.hide()
 
-    if (this.preferencesModule.getOption('showIcon')) {
-      this.app.dock.show()
+    if(os.platform() === 'darwin') {
+      this.app.dock.hide()
+
+      if (this.preferencesModule.getOption('showIcon')) {
+        this.app.dock.show()
+      }
     }
 
     this.app.commandLine.appendSwitch('disable-renderer-backgrounding')
@@ -101,7 +94,7 @@ const app = new class {
         {
           label: 'Preferences...',
           type: 'normal',
-          accelerator: 'Cmd+,',
+          accelerator: 'CommandOrControl+,',
           click: () => {
             this.preferencesModule.showWindow()
           }
@@ -112,7 +105,7 @@ const app = new class {
         {
           label: 'Quit',
           type: 'normal',
-          accelerator: 'Cmd+Q',
+          accelerator: 'CommandOrControl+Q',
           click: () => {
             this.app.quit()
           }
@@ -138,10 +131,10 @@ const app = new class {
         }
       })
 
-      Menu.setApplicationMenu(this.menu);
+      Menu.setApplicationMenu(this.menu)
 
       this.tray.setToolTip('Katana')
-      this.tray.setContextMenu(this.menu);
+      this.tray.setContextMenu(this.menu)
     })
   }
 
