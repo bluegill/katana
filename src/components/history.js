@@ -26,15 +26,16 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync(`${config.paths.application}/db.json`)
 const db = low(adapter)
 
-db.defaults({ screenshots: [] })
-  .write()
-
 module.exports = class {
   constructor(parent) {
     this.parent = parent
     this.options = parent.preferencesModule
 
     this.screenshots = []
+
+
+    db.defaults({ screenshots: [] })
+      .write()
   }
 
   addScreenshot(url) {
