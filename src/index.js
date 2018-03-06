@@ -39,6 +39,7 @@ const app = new class {
         path: this.appPath
       })
     }
+
     this.preferencesModule = new(require('./components/preferences'))(this)
     this.updaterModule = new(require('./components/updater'))(this)
     this.screenshotModule = new(require('./components/screenshot'))(this)
