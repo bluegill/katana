@@ -39,4 +39,4 @@ Application icons based off work by <a href="https://dribbble.com/sweetthye">Gre
 https://getkatana.com/about/credits/
 
 ### License
-Katana is available under the MIT license.
+Katana is available under the GPL-3.0 license.
