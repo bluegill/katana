@@ -54,8 +54,7 @@ module.exports = class {
   getHistory() {
     let screenshots = db.get('screenshots')
       .map('url')
-      .sortBy('timestamp')
-      .take(15)
+      .orderBy('timestamp', 'asc')
       .value()
 
     return screenshots
