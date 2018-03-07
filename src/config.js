@@ -70,7 +70,7 @@ config.services = {
     },
 
     'void.cat': {
-      uploadPath: 'https://void.cat/upload.php',
+      uploadPath: 'https://void.cat/src/php/upload.php',
       resultPath: 'https://void.cat'
     }
   },
