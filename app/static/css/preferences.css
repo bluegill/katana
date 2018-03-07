@@ -436,7 +436,7 @@ span.helper {
 }
 
 #history .history-container .screenshot .thumbnail>img {
-  width: 36px;
+  height: 36px; width: 36px;
   vertical-align: middle;
 }
 
