@@ -95,8 +95,6 @@ module.exports = class {
         }
       }
 
-      console.log(this.options.customService)
-
       if (this.options.customService) options.customService = this.options.customService
 
       if (options.history) delete options.history
@@ -129,8 +127,6 @@ module.exports = class {
   }
 
   saveOptions(options) {
-    console.log(options)
-
     if (options !== undefined) this.options = options
 
     const json = JSON.stringify(this.options)
