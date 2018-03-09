@@ -64,9 +64,9 @@ config.services = {
       resultPath: 'https://a.doko.moe'
     },
 
-    'safe.moe': {
-      uploadPath: 'https://safe.moe/upload',
-      resultPath: 'https://a.safe.moe'
+    'pomf.cat': {
+      uploadPath: 'https://pomf.cat/upload.php',
+      resultPath: 'https://a.pomf.cat'
     },
 
     'void.cat': {
