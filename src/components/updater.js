@@ -34,7 +34,7 @@ const { dialog } = electron
 const config = require('../config')
 
 module.exports = class {
-  constructor(parent) {
+  constructor (parent) {
     this.parent = parent
     this.options = parent.preferencesModule
 
@@ -70,9 +70,12 @@ module.exports = class {
       this.downloadUpdate(() => {
         console.log('Update complete, restarting app...')
 
+        const icon = path.join(__dirname, '../../app/static/images/icon.icns')
+
         dialog.showMessageBox({
           title: 'Update Complete',
-          message: 'Update complete, Katana will now restart.'
+          message: 'Update complete, Katana will now restart.',
+          icon: icon
         })
 
         const cmd = 'kill -9 ' + process.pid + ' && open -a ' + this.appPath
@@ -88,10 +91,8 @@ module.exports = class {
     })
   }
 
-  checkForUpdate(prompt) {
+  checkForUpdate (prompt) {
     console.log('Checking for update...')
-
-    const icon = path.join(__dirname, '../../app/static/images/', 'icon_alt.icns')
 
     request(this.updatePath, (error, response, body) => {
       if (!error && response.statusCode === 200) {
@@ -110,6 +111,8 @@ module.exports = class {
           console.log('No update available')
 
           if (prompt) {
+            const icon = path.join(__dirname, '../../app/static/images/icon.icns')
+
             dialog.showMessageBox(this.options.win, {
               message: 'There are currently no updates available.',
               icon: icon
@@ -120,8 +123,10 @@ module.exports = class {
         console.log('checkForUpdate() request error: ', error)
 
         if (prompt) {
+          const icon = path.join(__dirname, '../../app/static/images/icon.icns')
+
           dialog.showMessageBox(this.options.win, {
-            message: 'Unable to connect to update servers',
+            message: 'Unable to connect to update server',
             icon: icon
           })
         }
@@ -129,50 +134,42 @@ module.exports = class {
     })
   }
 
-  downloadUpdate(callback) {
+  downloadUpdate (callback) {
     const target = config.paths.application + '/app.zip'
-    const self = this
     const url = this.downloadPath
     const parent = this.parent
 
-    if (fs.existsSync(target)) {
-      fs.unlinkSync(target)
-    }
+    if (fs.existsSync(target)) fs.unlinkSync(target)
 
-    request.head(url, function(err, res, body) {
-      if (err) {
-        // handle error
-      }
-
-      request(url).pipe(fs.createWriteStream(target)).on('close', () => {
+    request(url).on('response', (response) => {
+      response.pipe(fs.createWriteStream(target)).on('finish', () => {
         const cmd = 'unzip -o ~/.katana/app.zip -d ~/.katana'
-        const icon = path.join(__dirname, '../../app/static/images/icon.alt.icns')
+        const icon = path.join(__dirname, '../../app/static/images/icon.icns')
 
-        let app = path.join(electron.app.getAppPath(), '../../../')
-        app = app.slice(0, -1)
-
-        self.appPath = app
+        let app = (path.join(electron.app.getAppPath(), '../../../')).slice(0, -1)
 
         if (parent.appPath.includes('electron')) {
-          dialog.showMessageBox({
-            title: 'Debug',
-            message: 'Updating disabled in development mode.'
-          })
-
-          return
+          return (
+            dialog.showMessageBox({
+              title: 'Debug',
+              message: 'Updating is disabled while running in development.',
+              icon: icon
+            })
+          )
         }
 
         childProcess.exec(cmd, () => {
           const opt = { name: 'Katana', icns: icon }
 
-          sudo.exec('rm -rf ' + app + ' && mv ~/.katana/Katana.app ' + app, opt, (error, stdout, stderr) => {
-            if (error) {
-              dialog.showMessageBox({
-                title: 'Error',
-                message: error.toString()
-              })
-
-              return
+          sudo.exec(`rm -rf ${app} && mv -f ~/.katana/Katana.app ${app}`, opt, (error, stdout, stderr) => {
+            if (error || stderr) {
+              return (
+                dialog.showMessageBox({
+                  title: 'Error',
+                  message: error.toString(),
+                  icon: icon
+                })
+              )
             }
 
             callback()
