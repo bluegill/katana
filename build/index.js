@@ -18,13 +18,11 @@
  */
 
 const packager = require('electron-packager')
-const asar = require('asar')
-const fs = require('fs-extra')
 
 const options = {
   platform: ['darwin'],
   arch: 'x64',
-  icon: './app/static/images/icon.alt.png',
+  icon: './app/static/images/icon',
   dir: '.',
   ignore: ['build'],
   out: './build/Release',
@@ -34,29 +32,10 @@ const options = {
 
 packager(options, (error, path) => {
   if (error) {
-    console.log(`Error: ${error}`)
-
-    return
+    return (
+      console.log(`Error: ${error}`)
+    )
   }
 
   console.log(`Package created, path: ${path}`)
-
-  /*
-  console.log(`Creating asar archive...`)
-
-  const src = './build/Release/Katana-darwin-x64/Katana.app/Contents/Resources/app'
-
-
-  asar.createPackageWithOptions(src, `${src}.asar`, {}, () => {
-    fs.remove(src, error => {
-      if (error) {
-        console.error(error)
-
-        return
-      }
-
-      console.log(`Build complete!`)
-    })
-  })
-  */
 })
