@@ -35,10 +35,9 @@ module.exports = class {
       if (!error) {
         try {
           const data = JSON.parse(body)
+          const link = {link: data.shorturl}
 
-          return callback({
-            link: data.shorturl
-          })
+          return callback(link)
         } catch (error) {
           return callback(null, error)
         }

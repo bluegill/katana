@@ -27,7 +27,7 @@ const utils = require('./utils')
 const { clipboard } = require('electron')
 
 module.exports = class {
-  constructor(parent) {
+  constructor (parent) {
     this.parent = parent
     this.options = parent.preferencesModule
     this.directory = config.paths.uploads
@@ -37,15 +37,15 @@ module.exports = class {
     }
   }
 
-  captureFull() {
+  captureFull () {
 
   }
 
-  captureWindow() {
+  captureWindow () {
 
   }
 
-  captureSelection() {
+  captureSelection () {
     this.execute(this.directory, (file, error) => {
       this.upload(file, (result, error) => {
         if (!error) {
@@ -62,7 +62,7 @@ module.exports = class {
     })
   }
 
-  upload(file, callback, tray) {
+  upload (file, callback, tray) {
     try {
       fs.statSync(file)
 
@@ -79,8 +79,6 @@ module.exports = class {
       }
 
       let customService = this.options.getOption('customService')
-
-      console.log(customService)
 
       if (service.substr(0, 4) === 'pomf' || customService) {
         service = service.split(':')[1]
@@ -133,7 +131,7 @@ module.exports = class {
     }
   }
 
-  execute(dir, callback) {
+  execute (dir, callback) {
     const name = utils.getTimestamp()
     const output = `${dir}/${name}.png`
     const command = `screencapture -i -x ${output}`

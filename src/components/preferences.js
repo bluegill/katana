@@ -18,8 +18,7 @@
  */
 
 const electron = require('electron')
-const { app, shell } = electron
-const { BrowserWindow } = electron
+const { app, shell, BrowserWindow } = electron
 
 const ipc = electron.ipcMain
 
@@ -27,7 +26,7 @@ const fs = require('fs')
 const config = require('../config')
 
 module.exports = class {
-  constructor(parent) {
+  constructor (parent) {
     this.parent = parent
 
     const path = config.paths.application
@@ -49,7 +48,7 @@ module.exports = class {
     })
 
     app.on('ready', () => {
-      //this.showWindow();
+      // this.showWindow();
     })
 
     ipc.on('getOptions', (event, arg) => {
@@ -95,7 +94,9 @@ module.exports = class {
         }
       }
 
-      if (this.options.customService) options.customService = this.options.customService
+      if (this.options.customService) {
+        options.customService = this.options.customService
+      }
 
       if (options.history) delete options.history
       if (options.hosts) delete options.hosts
@@ -116,17 +117,17 @@ module.exports = class {
     })
   }
 
-  getOption(key) {
+  getOption (key) {
     return this.options[key]
   }
 
-  setOption(key, val) {
+  setOption (key, val) {
     this.options[key] = val
 
     return this.options[key]
   }
 
-  saveOptions(options) {
+  saveOptions (options) {
     if (options !== undefined) this.options = options
 
     const json = JSON.stringify(this.options)
@@ -135,7 +136,7 @@ module.exports = class {
     fs.writeFileSync(path, json)
   }
 
-  showWindow(update) {
+  showWindow (update) {
     if (this.window) return
 
     this.window = new BrowserWindow({
@@ -150,7 +151,7 @@ module.exports = class {
       frame: false,
       show: false,
       hasShadow: false,
-      autoHideMenuBar: true,
+      autoHideMenuBar: true
     })
 
     this.window.loadURL(`file://${__dirname}/../../app/view/preferences.html`)

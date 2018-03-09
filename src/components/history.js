@@ -27,66 +27,35 @@ const adapter = new FileSync(`${config.paths.application}/db.json`)
 const db = low(adapter)
 
 module.exports = class {
-  constructor(parent) {
+  constructor (parent) {
     this.parent = parent
     this.options = parent.preferencesModule
 
     this.screenshots = []
 
-
     db.defaults({ screenshots: [] })
       .write()
   }
 
-  addScreenshot(url) {
+  addScreenshot (url) {
     let screenshot = {
       url: url,
       timestamp: utils.getTimestamp(true)
     }
 
     this.screenshots.push(screenshot)
-    //this.addToRecents(screenshot);
 
     db.get('screenshots')
       .push({ url: screenshot })
       .write()
   }
 
-  getHistory() {
+  getHistory () {
     let screenshots = db.get('screenshots')
       .map('url')
       .orderBy('timestamp', 'asc')
       .value()
 
     return screenshots
-  }
-
-  addToRecents(screenshot) {
-    if (!screenshot) return
-
-    if (!this.parent.menu.items[2].submenu) {
-      this.parent.menu.items[2].submenu = []
-    }
-
-    this.parent.menu.items[2].submenu.push({
-      label: screenshot.url,
-      click: () => { shell.openExternal(screenshot.url) }
-    })
-
-    console.log('aaaa')
-    //this.parent.menu.items[2].submenu
-  }
-
-
-  populateMenu() {
-
-  }
-
-  addToMenu() {
-
-  }
-
-  clearMenu() {
-
   }
 }

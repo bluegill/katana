@@ -37,13 +37,9 @@ module.exports = class {
     request.post(options, (error, response, body) => {
       if (!error) {
         try {
-          const data = body
+          const link = {link: body.id}
 
-          console.log(data)
-
-          return callback({
-            link: data.id
-          })
+          return callback(link)
         } catch (error) {
           return callback(null, error)
         }

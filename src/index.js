@@ -30,8 +30,8 @@ const { Tray, Menu, Notification, shell } = electron
 
 const ipc = electron.ipcMain
 
-const app = new class {
-  constructor() {
+const app = new (class { // eslint-disable-line no-unused-vars
+  constructor () {
     // create application home dir if it doesn't exist
     fs.ensureDirSync(config.paths.uploads)
 
@@ -44,11 +44,11 @@ const app = new class {
       })
     }
 
-    this.preferencesModule = new(require('./components/preferences'))(this)
-    this.updaterModule = new(require('./components/updater'))(this)
-    this.screenshotModule = new(require('./components/screenshot'))(this)
-    this.shortenerModule = new(require('./components/urlShortener'))(this)
-    this.historyModule = new(require('./components/history'))(this)
+    this.preferencesModule = new (require('./components/preferences'))(this)
+    this.updaterModule = new (require('./components/updater'))(this)
+    this.screenshotModule = new (require('./components/screenshot'))(this)
+    this.shortenerModule = new (require('./components/urlShortener'))(this)
+    this.historyModule = new (require('./components/history'))(this)
 
     const startAtLogin = this.preferencesModule.getOption('startAtLogin')
 
@@ -66,10 +66,10 @@ const app = new class {
     this.createTray()
   }
 
-  createTray() {
+  createTray () {
     this.app = electron.app
 
-    if(os.platform() === 'darwin') {
+    if (os.platform() === 'darwin') {
       this.app.dock.hide()
 
       if (this.preferencesModule.getOption('showIcon')) {
@@ -84,32 +84,32 @@ const app = new class {
       this.tray = new Tray(config.icons.tray.default)
 
       this.menu = Menu.buildFromTemplate([{
-          label: 'Take Screenshot',
-          type: 'normal',
-          click: () => {
-            this.screenshotModule.captureSelection()
-          }
-        },
-
-        {
-          label: 'Preferences...',
-          type: 'normal',
-          accelerator: 'CommandOrControl+,',
-          click: () => {
-            this.preferencesModule.showWindow()
-          }
-        },
-
-        { type: 'separator' },
-
-        {
-          label: 'Quit',
-          type: 'normal',
-          accelerator: 'CommandOrControl+Q',
-          click: () => {
-            this.app.quit()
-          }
+        label: 'Take Screenshot',
+        type: 'normal',
+        click: () => {
+          this.screenshotModule.captureSelection()
         }
+      },
+
+      {
+        label: 'Preferences...',
+        type: 'normal',
+        accelerator: 'CommandOrControl+,',
+        click: () => {
+          this.preferencesModule.showWindow()
+        }
+      },
+
+      { type: 'separator' },
+
+      {
+        label: 'Quit',
+        type: 'normal',
+        accelerator: 'CommandOrControl+Q',
+        click: () => {
+          this.app.quit()
+        }
+      }
       ])
 
       this.tray.on('drop-files', (event, files) => {
@@ -138,7 +138,7 @@ const app = new class {
     })
   }
 
-  showNotification(message, title, url) {
+  showNotification (message, title, url) {
     let notification = new Notification({
       title: title,
       body: message,
@@ -152,13 +152,7 @@ const app = new class {
     notification.show()
   }
 
-  setIcon(type) {
+  setIcon (type) {
     this.tray.setImage(config.icons.tray[type])
   }
-
-  something() {
-    // suppress lint warning
-  }
-}()
-
-app.something()
+})()

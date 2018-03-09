@@ -43,9 +43,9 @@ module.exports = class {
             result.url = `${this.resultPath}/${result.url}`
           }
 
-          return callback({
-            'link': (result.url || result.link)
-          })
+          const link = {link: (result.url || result.link)}
+
+          return callback(link)
         } else {
           return callback(null, error)
         }

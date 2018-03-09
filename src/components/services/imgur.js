@@ -45,11 +45,9 @@ module.exports = class {
 
       try {
         const data = JSON.parse(body).data
-        const link = data.link
+        const link = {link: data.link}
 
-        callback({
-          link: link
-        })
+        callback(link)
       } catch (error) {
         return callback(null, error)
       }

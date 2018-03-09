@@ -36,9 +36,8 @@ module.exports = class {
 
     this.ftp.put(file, `${this.dir}/${file}`, (error) => {
       if (!error) {
-        callback({
-          link: `${this.url}/${file}`
-        })
+        const result = {link: `${this.url}/${file}`}
+        callback(result)
       }
     })
   }
