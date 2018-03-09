@@ -19,9 +19,9 @@
 
 /* globals $, Mousetrap */
 
-window.$ = window.jQuery = require('../static/js/jquery.js')
+window.$ = window.jQuery = require('../static/js/jquery.min.js')
 
-require('../static/js/mousetrap.js')
+require('../static/js/mousetrap.min.js')
 require('../static/js/date.format.min.js')
 
 $('#general').show()
