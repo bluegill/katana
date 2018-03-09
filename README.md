@@ -8,8 +8,8 @@
   <img src='https://img.shields.io/badge/code%20style-standard-brightgreen.svg' alt='Standard - JavaScript Style Guide'>
 </a>
 
-<a href='https://nodesecurity.io/orgs/katana/projects/d24a0728-b6e7-4365-a648-e8033f9ad061'>
-  <img src='https://nodesecurity.io/orgs/katana/projects/d24a0728-b6e7-4365-a648-e8033f9ad061/badge' alt='Node Security Platform' />
+<a href="https://snyk.io/test/github/bluegill/katana">
+  <img src="https://snyk.io/test/github/bluegill/katana/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/bluegill/katana" style="max-width:100%;"/>
 </a>
 
 <a href='https://github.com/bluegill/katana/releases'>
