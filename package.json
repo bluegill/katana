@@ -27,7 +27,8 @@
     "sudo-prompt": "^8.1.0"
   },
   "devDependencies": {
-    "electron": "^1.8.1",
-    "electron-packager": "^11.1.0"
+    "electron": "^1.8.3",
+    "electron-packager": "^11.1.0",
+    "standard": "^11.0.0"
   }
 }
