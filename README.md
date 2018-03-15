@@ -19,7 +19,7 @@
 ### Overview
 Katana is a simple, open-source screenshot utility for macOS that lives in your menubar.
 
-Downloads available on the <a href='https://github.com/bluegill/katana/releases'>releases page</a>, or at https://getkatana.com/.
+Downloads are available on the <a href='https://github.com/bluegill/katana/releases'>releases page</a>.
 
 ### Features
 * Upload to several different image hosts, including Imgur and Pomf.
@@ -35,8 +35,6 @@ Downloads available on the <a href='https://github.com/bluegill/katana/releases'
 
 ### Credits
 Application icons based off work by <a href="https://dribbble.com/sweetthye">Gregory Thye</a>
-
-https://getkatana.com/about/credits/
 
 ### License
 Katana is available under the GPL-3.0 license.
