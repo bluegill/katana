@@ -75,7 +75,7 @@ config.services = {
     }
   },
 
-  shorteners: ['is.gd', 'v.gd', 'goo.gl']
+  shorteners: ['is.gd', 'v.gd']
 }
 
 module.exports = config
