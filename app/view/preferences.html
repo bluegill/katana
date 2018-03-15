@@ -11,6 +11,13 @@
   <app id="__preferences">
     <button class="button-close close"></button>
 
+    <div id="loader" class="backdrop dark">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+
     <div id="servicePrompt" class="backdrop">
       <div class="content">
         <p class="label">Upload Path</p>
@@ -26,33 +33,6 @@
         <div class="right">
           <button class="button button-cancel close-prompt" name="cancel">Cancel</button> &nbsp;&nbsp; 
           <button class="button button-save" name="save">Save</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="updatePrompt" class="backdrop">
-      <div class="content">
-        <i class="icon ion-ios-cloud-download-outline animated tada"></i>
-
-        <p>
-          <strong>Update Available</strong>
-        </p>
-
-        <p>
-          Please update the application to the latest version for the best experience.
-        </p>
-
-        <br/>
-
-        <p>
-          <a class="button-update" href="#download">Download & Install</a> or 
-          <a class="button-text" href="#cancel">Cancel</a>
-        </p>
-
-        <div class="progress">
-          <div class="bar">
-            <div class="indeterminate"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -144,7 +124,6 @@
             <p class="subtitle">The URL shortener to use when shortening links</p>
 
             <select name="shortenerService" class="control">
-              <option value="goo.gl">goo.gl</option>
               <option value="is.gd">is.gd</option>
               <option value="v.gd">v.gd</option>
             </select>
@@ -162,8 +141,6 @@
     </div>
   </app>
 
-  <script>
-  require('./preferences.js')
-  </script>
+  <script>require('./preferences.js')</script>
 </body>
 </html>

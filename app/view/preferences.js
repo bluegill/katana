@@ -99,12 +99,12 @@ ipc.on('getOptions', (event, options) => {
   }
 })
 
-ipc.on('showUpdate', (event) => {
-  showPrompt('#updatePrompt')
-})
-
 ipc.on('showService', (event, current) => {
   showPrompt('#servicePrompt')
+})
+
+ipc.on('showLoader', (event, current) => {
+  showPrompt('#loader')
 })
 
 $('.sidebar li').click((event) => {
@@ -132,12 +132,6 @@ $('#servicePrompt button[name="save"]').click(() => {
 
 $('a[href="#check"]').click(() => {
   ipc.send('checkForUpdate')
-})
-
-$('a[href="#download"]').click(function () {
-  ipc.send('downloadUpdate')
-  $(this).parent().hide()
-  $('#updatePrompt .progress').show()
 })
 
 $('a[href="#cancel"]').click(() => {

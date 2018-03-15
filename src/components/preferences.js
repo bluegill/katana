@@ -136,7 +136,7 @@ module.exports = class {
     fs.writeFileSync(path, json)
   }
 
-  showWindow (update) {
+  showWindow () {
     if (this.window) return
 
     this.window = new BrowserWindow({
@@ -156,10 +156,6 @@ module.exports = class {
 
     this.window.loadURL(`file://${__dirname}/../../app/view/preferences.html`)
 
-    this.window.once('ready-to-show', () => {
-      this.window.show()
-    })
-
     this.window.on('closed', () => {
       this.window = null
     })
@@ -169,8 +165,8 @@ module.exports = class {
       shell.openExternal(url)
     })
 
-    this.window.webContents.on('did-finish-load', () => {
-      if (update) this.window.webContents.send('showUpdate')
+    this.window.once('ready-to-show', () => {
+      this.window.show()
     })
   }
 }
