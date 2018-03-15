@@ -20,6 +20,7 @@
 const childProcess = require('child_process')
 
 const fs = require('fs')
+const os = require('os')
 
 const config = require('../config')
 const utils = require('./utils')
@@ -134,7 +135,15 @@ module.exports = class {
   execute (dir, callback) {
     const name = utils.getTimestamp()
     const output = `${dir}/${name}.png`
-    const command = `screencapture -i -x ${output}`
+
+    let command
+
+    if (os.platform() === 'darwin') command = `screencapture -i -x ${output}`
+    if (os.platform() === 'win32') {
+      const binary = '../../app/bin/boxcutter.exe'
+
+      command = `${binary} "${output}"`
+    }
 
     console.log('Capturing selection...')
 
@@ -143,7 +152,9 @@ module.exports = class {
         console.log('Selection captured!')
         return callback(output)
       }
+
       console.log('Error while capturing!')
+
       return callback(null, true)
     })
   }
