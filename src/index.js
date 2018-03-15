@@ -116,13 +116,14 @@ const app = new (class { // eslint-disable-line no-unused-vars
         const file = files[0]
         const ext = file.split('.').pop()
 
-        const allowed = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff']
+        const allowed = ['png', 'jpg', 'jpeg', 'gif']
 
         if (allowed.includes(ext)) {
           console.log('Uploading image...')
 
           this.screenshotModule.upload(file, (result, error) => {
             if (!error) {
+              this.historyModule.addScreenshot(result)
               this.showNotification('Image has been uploaded and copied to your clipboard.', 'Image Uploaded', result.link)
             } else {
               this.showNotification('Image failed to upload.', 'Upload Error')
