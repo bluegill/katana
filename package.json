@@ -1,7 +1,7 @@
 {
   "name": "Katana",
   "description": "Open-source screenshot utility that lives in your menubar.",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "./src/index.js",
   "author": {
     "url": "https://washedout.co/"
