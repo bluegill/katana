@@ -50,7 +50,7 @@ config.paths = {
 
 config.services = {
   imgur: {
-    token: '8049ae3132218f0'
+    token: '8d2e0f29107b225'
   },
 
   pomf: {
