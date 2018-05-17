@@ -22,14 +22,14 @@
   "dependencies": {
     "auto-launch": "^5.0.5",
     "decompress": "^4.2.0",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^6.0.1",
     "lowdb": "^1.0.0",
-    "request": "^2.85.0",
+    "request": "^2.86.0",
     "sudo-prompt": "^8.2.0"
   },
   "devDependencies": {
-    "electron": "^1.8.6",
-    "electron-packager": "^12.0.1",
+    "electron": "^2.0.1",
+    "electron-packager": "^12.0.2",
     "standard": "^11.0.1"
   }
 }
