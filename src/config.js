@@ -72,6 +72,11 @@ config.services = {
     'void.cat': {
       uploadPath: 'https://void.cat/src/php/upload.php',
       resultPath: 'https://void.cat'
+    },
+
+    'rokket.space': {
+      uploadPath: 'https://rokket.space/upload.php',
+      resultPath: 'https://a.rokket.space'
     }
   },
 
