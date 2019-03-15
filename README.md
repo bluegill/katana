@@ -1,3 +1,5 @@
+### Development branch for Katana v2
+
 # <img src='http://i.imgur.com/tfqdvrI.png' height='42' alt='Katana Icon'>
 
 <a href='https://david-dm.org/bluegill/katana'>
