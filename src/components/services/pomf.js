@@ -20,6 +20,8 @@
 const request = require('request')
 const fs = require('fs')
 
+const utils = require('../utils')
+
 module.exports = class {
   static upload (file, callback) {
     console.log('Uploading image to pomf...')
@@ -33,7 +35,7 @@ module.exports = class {
         return callback(null, error)
       }
 
-      try {
+      if (utils.isJSON(body)) {
         let result = JSON.parse(body)
 
         if (result.success || result.status === 200) {
@@ -43,14 +45,12 @@ module.exports = class {
             result.url = `${this.resultPath}/${result.url}`
           }
 
-          const link = {link: (result.url || result.link)}
+          const link = { link: (result.url || result.link) }
 
           return callback(link)
         } else {
           return callback(null, error)
         }
-      } catch (error) {
-        return callback(null, error)
       }
     })
 

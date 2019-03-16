@@ -39,13 +39,15 @@ module.exports = class {
     }
 
     const post = request.post(options, (error, req, body) => {
+      console.log(error, req, body)
+
       if (error) {
         return callback(null, error)
       }
 
       try {
         const data = JSON.parse(body).data
-        const link = {link: data.link}
+        const link = { link: data.link }
 
         callback(link)
       } catch (error) {

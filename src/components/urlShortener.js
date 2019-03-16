@@ -20,7 +20,7 @@
 const config = require('../config')
 const utils = require('./utils')
 
-const {clipboard} = require('electron')
+const { clipboard } = require('electron')
 
 module.exports = class {
   constructor (parent) {

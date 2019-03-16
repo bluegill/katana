@@ -17,7 +17,7 @@
  *  along with Katana. If not, see <http://www.gnu.org/licenses/>.
  */
 
-const {globalShortcut} = require('electron')
+const { globalShortcut } = require('electron')
 const config = require('../config')
 
 module.exports = class {

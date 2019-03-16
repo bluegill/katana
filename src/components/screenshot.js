@@ -138,7 +138,7 @@ module.exports = class {
 
     let command
 
-    if (os.platform() === 'darwin') command = `screencapture -i -x ${output}`
+    if (os.platform() === 'darwin') command = `/usr/sbin/screencapture -i -x ${output}`
     if (os.platform() === 'win32') {
       const binary = '../../app/bin/boxcutter.exe'
 
@@ -155,7 +155,7 @@ module.exports = class {
 
       console.log('Error while capturing!')
 
-      return callback(null, true)
+      return callback(null, error)
     })
   }
 }

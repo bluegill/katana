@@ -50,28 +50,25 @@ config.paths = {
 
 config.services = {
   imgur: {
-    token: '8d2e0f29107b225'
+    token: ''
   },
 
   pomf: {
-    'comfy.moe': {
-      uploadPath: 'https://comfy.moe/upload.php',
-      resultPath: 'https://comfy.moe'
+    /*
+    'cocaine.ninja': {
+      uploadPath: 'https://cocaine.ninja/upload.php',
+      resultPath: 'https://a.cocaine.ninja'
+    },
+    */
+
+    'mixtape.moe': {
+      uploadPath: 'https://mixtape.moe/upload.php',
+      resultPath: 'https://my.mixtape.moe'
     },
 
-    'doko.moe': {
-      uploadPath: 'https://doko.moe/upload.php',
-      resultPath: 'https://a.doko.moe'
-    },
-
-    'pomf.cat': {
-      uploadPath: 'https://pomf.cat/upload.php',
-      resultPath: 'https://a.pomf.cat'
-    },
-
-    'void.cat': {
-      uploadPath: 'https://void.cat/src/php/upload.php',
-      resultPath: 'https://void.cat'
+    'pomf.fun': {
+      uploadPath: 'https://pomf.fun/upload.php',
+      resultPath: 'https://i.pomf.fun'
     }
   },
 

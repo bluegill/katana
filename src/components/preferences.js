@@ -170,8 +170,8 @@ module.exports = class {
       submenu: [
         { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
         { type: 'separator' },
-        { label: 'Quit', accelerator: 'Command+Q', click: function () { app.quit() }}
-      ]}, {
+        { label: 'Quit', accelerator: 'Command+Q', click: function () { app.quit() } }
+      ] }, {
       label: 'Edit',
       submenu: [
         { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
@@ -181,7 +181,7 @@ module.exports = class {
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' }
-      ]}
+      ] }
     ]
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(template))

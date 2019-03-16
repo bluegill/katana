@@ -69,9 +69,11 @@ ipc.on('getOptions', (event, options) => {
     $('#history .history-container > ul').append(element)
   }
 
-  if (options.showIcon === true) $('#showIcon').prop('checked', true)
-  if (options.deleteOnUpload === true) $('#deleteOnUpload').prop('checked', true)
-  if (options.startAtLogin === true) $('#startAtLogin').prop('checked', true)
+  if (options.showIcon === true) { $('#showIcon').prop('checked', true) }
+
+  if (options.deleteOnUpload === true) { $('#deleteOnUpload').prop('checked', true) }
+
+  if (options.startAtLogin === true) { $('#startAtLogin').prop('checked', true) }
 
   if (options.shortcuts) {
     for (const shortcut of Object.keys(options.shortcuts)) {
@@ -91,11 +93,8 @@ ipc.on('getOptions', (event, options) => {
 
   if (options.customService) {
     $('#servicePrompt input[name="uploadPath"]').val(options.customService.uploadPath)
-    $('select[name="uploadService"]').val('custom')
-  }
-
-  if (options.customService) {
     $('#servicePrompt input[name="resultPath"]').val(options.customService.resultPath)
+    $('select[name="uploadService"]').val('custom')
   }
 })
 
@@ -140,6 +139,7 @@ $('a[href="#cancel"]').click(() => {
 
 $('input[type="checkbox"]').change(function () {
   let option = $(this).attr('id')
+
   optionsObj[option] = this.checked
 })
 
@@ -149,14 +149,20 @@ $('select[name="uploadService"]').change(function () {
     return (
       showPrompt('#servicePrompt')
     )
+  } else {
+    delete optionsObj.customService
   }
+
   if (!optionsObj.services) optionsObj.services = {}
+
   optionsObj.services.uploadService = service
 })
 
 $('select[name="shortenerService"]').change(function () {
   let service = $(this).find('option:selected').val()
+
   if (!optionsObj.services) optionsObj.services = {}
+
   optionsObj.services.shortenerService = service
 })
 
@@ -198,6 +204,7 @@ function parseTime (str) {
 
 function saveAndClose () {
   ipc.send('saveOptions', optionsObj)
+
   remote.getCurrentWindow().close()
 }
 
@@ -205,6 +212,7 @@ function parseCombo (combo) {
   if (combo.includes('meta')) {
     combo = combo.replace('meta', 'command')
   }
+
   return combo
 }
 

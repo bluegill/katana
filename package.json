@@ -1,13 +1,11 @@
 {
   "name": "Katana",
   "description": "Open-source screenshot utility that lives in your menubar.",
-  "version": "1.4.1",
+  "version": "1.4.4",
   "main": "./src/index.js",
-  "author": {
-    "url": "https://washedout.co/"
-  },
+  "author": {},
   "license": "GPL-3.0",
-  "homepage": "https://washedout.co/katana/",
+  "homepage": "https://getkatana.com/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bluegill/katana.git"
@@ -22,14 +20,14 @@
   "dependencies": {
     "auto-launch": "^5.0.5",
     "decompress": "^4.2.0",
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^7.0.1",
     "lowdb": "^1.0.0",
-    "request": "^2.87.0",
-    "sudo-prompt": "^8.2.0"
+    "request": "^2.88.0",
+    "sudo-prompt": "^8.2.5"
   },
   "devDependencies": {
-    "electron": "^2.0.5",
-    "electron-packager": "^12.1.0",
-    "standard": "^11.0.1"
+    "electron": "^4.1.0",
+    "electron-packager": "^13.1.1",
+    "standard": "^12.0.1"
   }
 }
