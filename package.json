@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "author": {},
   "license": "GPL-3.0",
-  "homepage": "https://getkatana.com/",
+  "homepage": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bluegill/katana.git"
@@ -19,15 +19,15 @@
   },
   "dependencies": {
     "auto-launch": "^5.0.5",
-    "decompress": "^4.2.0",
-    "fs-extra": "^8.0.1",
+    "decompress": "^4.2.1",
+    "fs-extra": "^9.0.0",
     "lowdb": "^1.0.0",
-    "request": "^2.88.0",
-    "sudo-prompt": "^9.0.0"
+    "request": "^2.88.2",
+    "sudo-prompt": "^9.1.1"
   },
   "devDependencies": {
-    "electron": "^5.0.3",
-    "electron-packager": "^13.1.1",
-    "standard": "^12.0.1"
+    "electron": "^8.2.3",
+    "electron-packager": "^14.2.1",
+    "standard": "^14.3.3"
   }
 }
