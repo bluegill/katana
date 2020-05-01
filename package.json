@@ -25,11 +25,13 @@
     "fs-extra": "^9.0.0",
     "lowdb": "^1.0.0",
     "request": "^2.88.2",
-    "sudo-prompt": "^9.1.1"
+    "sudo-prompt": "^9.1.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "electron": "^8.2.3",
     "electron-packager": "^14.2.1",
     "standard": "^14.3.3"
-  }
+  },
+  "snyk": true
 }
