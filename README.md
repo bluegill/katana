@@ -23,6 +23,7 @@ Downloads are available on the <a href='https://github.com/bluegill/katana/relea
 
 ### Features
 * Upload to several different image hosts, including Imgur and Pomf.
+* Automatically upload when screenshot is taken.
 * Directly upload files by dragging & dropping them onto the menubar.
 * Shorten any link that's copied to your clipboard.
 * Customizable shortcuts and preferences.
